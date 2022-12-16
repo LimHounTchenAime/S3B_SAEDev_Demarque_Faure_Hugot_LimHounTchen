@@ -3,6 +3,6 @@ module game.dragdrop {
     requires javafx.fxml;
 
 
-    opens game.Main to javafx.fxml;
-    exports game.Main;
+    opens Main to javafx.fxml;
+    exports Main;
 }
