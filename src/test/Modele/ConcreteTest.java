@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 class ConcreteTest {
     @Test
-    public void lol(){
-        Analyseur.analyserClasse("Modele/Tmp.java");
+    public void test() throws ClassNotFoundException{
+        Concrete concrete=Concrete.analyserClasse("Modele.Tmp");
     }
 }

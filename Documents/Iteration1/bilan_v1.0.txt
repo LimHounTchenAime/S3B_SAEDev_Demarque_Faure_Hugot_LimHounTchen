@@ -1,0 +1,8 @@
+Débuts de fonctionnalités pour :
+- Possibilité d'afficher le contenu d'une classe concrète dont le nom est donné en paramètre dans un main
+- Création d'une classe à partir d'un nom de fichier donné en paramètres contenant les informations de cette dernière
+-
+
+Réalisé :
+- Classes Classe et Concrete
+- Début d'interface graphique et étude de la fonctionnalité glisser-déposer
