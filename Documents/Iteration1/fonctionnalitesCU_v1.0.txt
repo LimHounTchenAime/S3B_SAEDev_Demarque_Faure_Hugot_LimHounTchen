@@ -1,0 +1,12 @@
+Aimé :
+- Possibilité d'afficher le contenu d'une classe concrète dont le nom est donné en paramètre dans un main
+
+Amaury :
+- Création d'une classe à partir d'un nom de fichier donné en paramètres contenant les informations de cette dernière
+
+Solène :
+- Méthode toString() permettant d'afficher une classe avec ses informations
+- Effectuer le test de l'affichage de la classe
+
+Benjamin :
+- Ajout début d'interface graphique

@@ -1,6 +1,5 @@
 package Modele;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Classe {
@@ -62,5 +61,6 @@ public abstract class Classe {
         //res+="Parents : \n" + this.parents.toString();
         return res;
     }
+
 
 }
