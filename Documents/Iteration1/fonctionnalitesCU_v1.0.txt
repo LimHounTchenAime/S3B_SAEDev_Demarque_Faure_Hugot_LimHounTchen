@@ -9,3 +9,4 @@ Solène :
 - Effectuer le test de l'affichage de la classe
 
 Benjamin :
+- Ajout début d'interface graphique
