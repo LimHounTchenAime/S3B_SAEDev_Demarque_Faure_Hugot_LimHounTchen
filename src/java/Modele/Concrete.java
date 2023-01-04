@@ -2,9 +2,11 @@ package Modele;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
+import java.Modele.Classe;
 
-public class Concrete extends Classe{
+public class Concrete extends Classe {
     public Concrete() {
+<<<<<<< HEAD
         super("","");
         this.typeClasse="Concrete";
         this.nomClasse="Test";
@@ -20,6 +22,9 @@ public class Concrete extends Classe{
         m.add("ajouterTest():void");
         m.add("supprimerTest():void");
         this.methodes=m;
+=======
+        this.typeClasse="Concrète";
+>>>>>>> c94841da87f9592d6a22732d578e6c279d27eca4
     }
 
     public static Concrete analyserClasse(String cheminClasse) throws ClassNotFoundException{
@@ -67,5 +72,9 @@ public class Concrete extends Classe{
 
 
         return res;
+    }
+
+    public String toString() {
+        return this.typeClasse+"\n"+super.toString();
     }
 }

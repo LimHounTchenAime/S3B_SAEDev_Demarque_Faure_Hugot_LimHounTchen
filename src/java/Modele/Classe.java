@@ -1,4 +1,4 @@
-package Modele;
+package java.Modele;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +28,14 @@ public class Classe {
     protected List<Classe> interfaces;
 
     /**
+     * TODO
      * Constructeur ayant pour but de tester la méthode toString dans un programme
      * principal.
      * A remplacer par le constructeur utilisant un nom de fichier ayant les
      * informations sur une classe
      */
+
+    //public Classe(String nomFichier);
 
     public String getTypeClasse() {
         return this.typeClasse;

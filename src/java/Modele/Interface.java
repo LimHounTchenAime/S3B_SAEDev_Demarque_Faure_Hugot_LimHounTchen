@@ -1,7 +1,10 @@
-package Modele;
+package java.Modele;
+
+import java.Modele.Classe;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class Interface extends Classe{
     public Interface() {
         super("","");
@@ -20,4 +23,14 @@ public class Interface extends Classe{
         m.add("supprimerTest():void");
         this.methodes=m;
     }
+=======
+    public Interface() {
+        this.typeClasse="Interface";
+    }
+
+    public String toString() {
+        return this.typeClasse+"\n"+super.toString();
+    }
+
+>>>>>>> c94841da87f9592d6a22732d578e6c279d27eca4
 }

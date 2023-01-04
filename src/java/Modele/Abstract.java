@@ -1,8 +1,11 @@
-package Modele;
+package java.Modele;
+
+import java.Modele.Classe;
 
 import java.util.ArrayList;
 
 public class Abstract extends Classe{
+<<<<<<< HEAD
     public Abstract() {
         super("","");
         this.typeClasse="Abstract";
@@ -20,4 +23,15 @@ public class Abstract extends Classe{
         m.add("supprimerTest():void");
         this.methodes=m;
     }
+=======
+
+    public Abstract() {
+        this.typeClasse="Abstract";
+    }
+
+    public String toString() {
+        return this.typeClasse+"\n"+super.toString();
+    }
+
+>>>>>>> c94841da87f9592d6a22732d578e6c279d27eca4
 }
