@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Concrete extends Classe{
     public Concrete() {
+        super("","");
         this.typeClasse="Concrete";
         this.nomClasse="Test";
         this.nomPackage="TestClasse";

@@ -4,8 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class Classe {
+public class Classe {
 
+    public Classe(String name, String nomPackage) {
+        this.typeClasse="Concrete";
+        this.nomClasse=name;
+        if(!nomPackage.isEmpty()) {
+            this.nomPackage = nomPackage;
+            this.fileName = this.nomPackage+".";
+        }
+        this.fileName+=this.nomClasse;
+
+    }
     protected String fileName;
     protected String typeClasse;
     protected String nomClasse;
@@ -76,19 +86,20 @@ public abstract class Classe {
         Class p = c.getSuperclass();
         if(p!=null){
             if(p.isInterface()){
-                //this.parents = new Interface(); à ajouter plus tard
+                this.parents = new Interface();
             } else {
                 if(p.toGenericString().contains("abstract")){
-                    //this.parents = new Abstract(); à ajouter plus tard
+                    this.parents = new Abstract();
                 } else {
-                    //this.parents = new Classe();
+                    this.parents = new Classe(p.getSimpleName(),p.getPackageName());
                 }
             }
         }
 
-        for(Class i: c.getInterfaces()){
-            //this.interfaces.add(new Interface()); à ajouter plus tard
+        if(c.getInterfaces()!=null){
+            for(Class i: c.getInterfaces()){
+                this.interfaces.add(new Interface());
+            }
         }
-
     }
 }
