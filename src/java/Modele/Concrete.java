@@ -6,6 +6,8 @@ import java.Modele.Classe;
 
 public class Concrete extends Classe {
     public Concrete() {
+        super("","");
+
         this.typeClasse="Concrète";
 
         // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever

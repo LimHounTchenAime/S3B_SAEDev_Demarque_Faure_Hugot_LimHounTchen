@@ -3,9 +3,12 @@ package java.Modele;
 import java.Modele.Classe;
 import java.util.ArrayList;
 
-public class Interface extends Classe{
+import java.util.ArrayList;
 
+public class Interface extends Classe{
     public Interface() {
+        super("","");
+
         this.typeClasse="Interface";
 
         // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever
@@ -27,5 +30,4 @@ public class Interface extends Classe{
     public String toString() {
         return this.typeClasse+"\n"+super.toString();
     }
-
 }

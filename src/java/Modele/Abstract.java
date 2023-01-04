@@ -3,9 +3,12 @@ package java.Modele;
 import java.Modele.Classe;
 import java.util.ArrayList;
 
-public class Abstract extends Classe{
+import java.util.ArrayList;
 
+public class Abstract extends Classe{
     public Abstract() {
+        super("","");
+
         this.typeClasse="Abstract";
 
         // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever
@@ -27,5 +30,4 @@ public class Abstract extends Classe{
     public String toString() {
         return this.typeClasse+"\n"+super.toString();
     }
-
 }
