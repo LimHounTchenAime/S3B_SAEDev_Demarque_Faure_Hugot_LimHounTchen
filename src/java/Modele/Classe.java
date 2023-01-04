@@ -1,5 +1,6 @@
 package Modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,8 +73,22 @@ public abstract class Classe {
 
     public void determinerParent() throws ClassNotFoundException {
         Class c = Class.forName(this.fileName);
-        switch (c.getTypeName()){
-
+        Class p = c.getSuperclass();
+        if(p!=null){
+            if(p.isInterface()){
+                //this.parents = new Interface(); à ajouter plus tard
+            } else {
+                if(p.toGenericString().contains("abstract")){
+                    //this.parents = new Abstract(); à ajouter plus tard
+                } else {
+                    //this.parents = new Classe();
+                }
+            }
         }
+
+        for(Class i: c.getInterfaces()){
+            //this.interfaces.add(new Interface()); à ajouter plus tard
+        }
+
     }
 }
