@@ -1,4 +1,4 @@
-package Modele;
+package java.Modele;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -7,6 +7,21 @@ import java.Modele.Classe;
 public class Concrete extends Classe {
     public Concrete() {
         this.typeClasse="Concrète";
+
+        // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever
+        this.nomClasse="Test";
+        this.nomPackage="TestClasse";
+        ArrayList<String> a=new ArrayList<String>();
+        a.add("int i");
+        a.add("String s");
+        this.attributs=a;
+        ArrayList<String> c=new ArrayList<String>();
+        c.add("Test(int i)");
+        this.constructeurs=c;
+        ArrayList<String> m=new ArrayList<String>();
+        m.add("ajouterTest():void");
+        m.add("supprimerTest():void");
+        this.methodes=m;
     }
 
     public static Concrete analyserClasse(String cheminClasse) throws ClassNotFoundException{
