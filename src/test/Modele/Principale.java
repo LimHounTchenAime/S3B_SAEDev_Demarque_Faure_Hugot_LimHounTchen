@@ -1,9 +1,4 @@
-package test.Modele;
-
-import java.Modele.Abstract;
-import java.Modele.Concrete;
-import java.Modele.Interface;
-
+package Modele;
 
 public class Principale {
 

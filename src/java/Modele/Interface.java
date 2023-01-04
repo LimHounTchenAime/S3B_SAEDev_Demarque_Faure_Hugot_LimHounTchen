@@ -1,16 +1,11 @@
-package java.Modele;
-
-import java.Modele.Classe;
-import java.util.ArrayList;
+package Modele;
 
 import java.util.ArrayList;
 
 public class Interface extends Classe{
     public Interface() {
         super("","");
-
         this.typeClasse="Interface";
-
         // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever
         this.nomClasse="Test";
         this.nomPackage="TestClasse";

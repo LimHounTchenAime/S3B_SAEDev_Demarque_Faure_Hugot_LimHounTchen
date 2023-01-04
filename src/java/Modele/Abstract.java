@@ -1,7 +1,4 @@
-package java.Modele;
-
-import java.Modele.Classe;
-import java.util.ArrayList;
+package Modele;
 
 import java.util.ArrayList;
 
