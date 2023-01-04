@@ -48,17 +48,15 @@ public abstract class Classe {
     }
 
     public String toString() {
-        String res="Classe " + this.nomClasse + "\n";
-        res+=this.typeClasse + "\n";
-        res+="dans le package " + this.nomPackage + "\n";
+        String res="<<Java "+this.typeClasse+">>\n";
+        res+=this.nomClasse + "\n";
+        res+=this.nomPackage + "\n";
         res+="________________\n";
         res+=this.attributs.toString() + "\n";
         res+="________________\n";
         res+=this.constructeurs.toString() + "\n";
         res+="________________\n";
         res+=this.methodes.toString() + "\n";
-        //res+="________________\n";
-        //res+="Parents : \n" + this.parents.toString();
         return res;
     }
 
