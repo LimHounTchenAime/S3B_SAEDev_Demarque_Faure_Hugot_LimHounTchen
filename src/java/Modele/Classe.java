@@ -1,16 +1,20 @@
 package Modele;
 
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Classe {
 
+    protected String fileName;
     protected String typeClasse;
     protected String nomClasse;
     protected String nomPackage;
     protected List<String> attributs;
     protected List<String> constructeurs;
     protected List<String> methodes;
-    protected List<Classe> parents;
+    protected Classe parents;
+
+    protected List<Classe> interfaces;
 
     /**
      * Constructeur ayant pour but de tester la méthode toString dans un programme
@@ -43,9 +47,13 @@ public abstract class Classe {
         return this.methodes;
     }
 
-    public List<Classe> getParents() {
+    public Classe getParents() {
         return this.parents;
     }
+
+    public String getFileName() { return this.fileName; }
+
+    public List<Classe> getInterfaces(){ return this.interfaces; }
 
     public String toString() {
         String res="Classe " + this.nomClasse + "\n";
@@ -62,5 +70,10 @@ public abstract class Classe {
         return res;
     }
 
+    public void determinerParent() throws ClassNotFoundException {
+        Class c = Class.forName(this.fileName);
+        switch (c.getTypeName()){
 
+        }
+    }
 }
