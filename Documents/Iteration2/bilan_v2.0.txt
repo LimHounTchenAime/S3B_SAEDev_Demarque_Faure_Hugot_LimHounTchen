@@ -1,0 +1,5 @@
+Objectifs atteints :
+
+- Finalisation de la méthode analyserClasse avec ses tests
+- Finalisation de la méthode determinerParent
+- Finalisation de l'affichage de différents types de classes avec ses tests

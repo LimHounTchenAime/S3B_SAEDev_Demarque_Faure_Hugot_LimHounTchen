@@ -1,0 +1,17 @@
+Aimé :
+- Fonctionnalité permettant de créer un objet Classe à partir d'un nom de fichier grâce à l'introspection faite
+de la méthode analyserClasse
+- Test de la méthode vérifiée à l'aide de la classe ConcreteTest et ClasseDeTest
+
+Amaury :
+- Fonctionnalité permettant de trouver les parents d'une classe avec la grâce à la méthode determinerParent
+
+Solène :
+- Fonctionnalité permettant l'affichage d'une classe d'une manière différente dans un terminal selon son type:
+Abstraite, Interface ou Concrète
+- Test de la foncionnalité
+
+Benjamin :
+- Fonctionnalité permettant de glisser-déposer des fichiers, puis de les déplacer dans l'interface graphique
+- Fonctionnalité permettant d'ajouter des flèches faisant les liens entre les différentes classes présentes dans
+l'interface graphique
