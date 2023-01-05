@@ -1,6 +1,7 @@
 package Modele;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classe {
@@ -13,7 +14,7 @@ public class Classe {
             this.fileName = this.nomPackage+".";
         }
         this.fileName+=this.nomClasse;
-
+        this.interfaces = new ArrayList<Classe>();
     }
     protected String fileName;
     protected String typeClasse;
@@ -86,10 +87,10 @@ public class Classe {
         Class p = c.getSuperclass();
         if(p!=null){
             if(p.isInterface()){
-                this.parents = new Interface();
+                this.parents = new Interface(p.getSimpleName(),p.getPackageName());
             } else {
                 if(p.toGenericString().contains("abstract")){
-                    this.parents = new Abstract();
+                    this.parents = new Abstract(p.getSimpleName(),p.getPackageName());
                 } else {
                     this.parents = new Classe(p.getSimpleName(),p.getPackageName());
                 }
@@ -98,7 +99,7 @@ public class Classe {
 
         if(c.getInterfaces()!=null){
             for(Class i: c.getInterfaces()){
-                this.interfaces.add(new Interface());
+                this.interfaces.add(new Interface(i.getSimpleName(),i.getPackageName()));
             }
         }
     }

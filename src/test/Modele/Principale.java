@@ -4,9 +4,11 @@ public class Principale {
 
     public static void main(String[] args) {
 
+        /*Il faudrat ajouter manuellement les données des classes (nom et nom de package)
+          pour que ça fonctionne comme avant*/
         Concrete conc = new Concrete();
-        Abstract abs = new Abstract();
-        Interface inter = new Interface();
+        Abstract abs = new Abstract("","");
+        Interface inter = new Interface("","");
 
         System.out.println("Affichage classe Concrete \n");
         System.out.println(conc.toString());
