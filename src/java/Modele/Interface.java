@@ -6,6 +6,7 @@ public class Interface extends Classe{
     public Interface() {
         super("","");
         this.typeClasse="Interface";
+
         // cette partie sert uniquement aux tests d'affichages et sera éventuellement à enlever
         this.nomClasse="Test";
         this.nomPackage="TestClasse";
@@ -20,9 +21,5 @@ public class Interface extends Classe{
         m.add("ajouterTest():void");
         m.add("supprimerTest():void");
         this.methodes=m;
-    }
-
-    public String toString() {
-        return this.typeClasse+"\n"+super.toString();
     }
 }

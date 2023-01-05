@@ -24,7 +24,4 @@ public class Abstract extends Classe{
         this.methodes=m;
     }
 
-    public String toString() {
-        return this.typeClasse+"\n"+super.toString();
-    }
 }

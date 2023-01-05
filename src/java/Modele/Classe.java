@@ -1,6 +1,7 @@
 package Modele;
 
 import java.lang.reflect.*;
+import java.util.Comparator;
 import java.util.List;
 
 public class Classe {
@@ -103,79 +104,114 @@ public class Classe {
         }
     }
 
-    public static Concrete analyserClasse(String cheminClasse){
-        Concrete res=new Concrete();
+    public static Classe analyserClasse(String cheminClasse){
+        Classe res=null;
 
         try {
+
+
             Class classe = Class.forName(cheminClasse);
             Field[] attributs = classe.getDeclaredFields();
             Constructor[] constructeurs = classe.getDeclaredConstructors();
             Method[] methodes = classe.getDeclaredMethods();
             String parametres;
 
-            res.nomClasse = classe.getName();
-            if (res.nomClasse.contains("."))
-                res.nomClasse = res.nomClasse.substring(res.nomClasse.indexOf(".")).substring(1);
+            if (classe.isInterface())
+                res = new Interface();
+            else
+                if (classe.toGenericString().contains("abstract"))
+                    res = new Abstract();
+                 else {
+                    res = new Concrete();
+                }
 
-            res.nomPackage = classe.getPackageName();
+                res.nomClasse = classe.getName();
+                if (res.nomClasse.contains("."))
+                    res.nomClasse = res.nomClasse.substring(res.nomClasse.indexOf(".")).substring(1);
 
-            String attribut = "";
-            for (Field field : attributs) {
-                attribut = Modifier.toString(field.getModifiers()) + " " + field.getName() + ":" + field.getType();
-                while (attribut.contains("."))
-                    attribut = Modifier.toString(field.getModifiers()) + " " + field.getName() + ":" + attribut.substring(attribut.indexOf(".")).substring(1);
-                res.attributs.add(attribut);
-            }
+                res.nomPackage = classe.getPackageName();
 
-            String constructeur = "";
-            for (Constructor constructor : constructeurs) {
-                String nomConstructeur = constructor.getName() + "(";
-                while (nomConstructeur.contains("."))
-                    nomConstructeur = nomConstructeur.substring(nomConstructeur.indexOf(".")).substring(1);
-                constructeur = Modifier.toString(constructor.getModifiers()) + " " + nomConstructeur;
-                if (constructor.getParameterCount() > 0) {
-                    parametres = constructor.getParameters()[0].getType().getName();
-                    while (parametres.contains("."))
-                        parametres = parametres.substring(parametres.indexOf(".")).substring(1);
-                    constructeur += parametres;
-                    for (int i = 1; i < constructor.getParameterCount(); i++) {
-                        parametres = "," + constructor.getParameters()[i].getType().getName();
+                String attribut = "";
+                for (Field field : attributs) {
+                    attribut = Modifier.toString(field.getModifiers()) + " " + field.getName() + ":" + field.getType();
+                    while (attribut.contains("."))
+                        attribut = Modifier.toString(field.getModifiers()) + " " + field.getName() + ":" + attribut.substring(attribut.indexOf(".")).substring(1);
+                    res.attributs.add(attribut);
+                }
+
+                String constructeur = "";
+                for (Constructor constructor : constructeurs) {
+                    String nomConstructeur = constructor.getName() + "(";
+                    while (nomConstructeur.contains("."))
+                        nomConstructeur = nomConstructeur.substring(nomConstructeur.indexOf(".")).substring(1);
+                    constructeur = Modifier.toString(constructor.getModifiers()) + " " + nomConstructeur;
+                    if (constructor.getParameterCount() > 0) {
+                        parametres = constructor.getParameters()[0].getType().getName();
                         while (parametres.contains("."))
-                            parametres = "," + parametres.substring(parametres.indexOf(".")).substring(1);
+                            parametres = parametres.substring(parametres.indexOf(".")).substring(1);
                         constructeur += parametres;
+                        for (int i = 1; i < constructor.getParameterCount(); i++) {
+                            parametres = "," + constructor.getParameters()[i].getType().getName();
+                            while (parametres.contains("."))
+                                parametres = "," + parametres.substring(parametres.indexOf(".")).substring(1);
+                            constructeur += parametres;
+                        }
                     }
+                    res.constructeurs.add(constructeur + ")");
                 }
-                res.constructeurs.add(constructeur + ")");
-            }
 
-            String methode;
-            for (Method method : methodes) {
-                String nomMethode = method.getName() + "(";
-                while (nomMethode.contains("."))
-                    nomMethode = nomMethode.substring(nomMethode.indexOf(".")).substring(1);
-                methode = Modifier.toString(method.getModifiers()) + " " + nomMethode;
-                if (method.getParameterCount() > 0) {
-                    parametres = method.getParameters()[0].getType().getName();
-                    while (parametres.contains("."))
-                        parametres = parametres.substring(parametres.indexOf(".")).substring(1);
-                    methode += parametres;
-                    for (int i = 1; i < method.getParameterCount(); i++) {
-                        parametres = "," + method.getParameters()[i].getType().getName();
+                String methode;
+                for (Method method : methodes) {
+                    String nomMethode = method.getName() + "(";
+                    while (nomMethode.contains("."))
+                        nomMethode = nomMethode.substring(nomMethode.indexOf(".")).substring(1);
+                    methode = Modifier.toString(method.getModifiers()) + " " + nomMethode;
+                    if (method.getParameterCount() > 0) {
+                        parametres = method.getParameters()[0].getType().getName();
                         while (parametres.contains("."))
-                            parametres = "," + parametres.substring(parametres.indexOf(".")).substring(1);
+                            parametres = parametres.substring(parametres.indexOf(".")).substring(1);
                         methode += parametres;
+                        for (int i = 1; i < method.getParameterCount(); i++) {
+                            parametres = "," + method.getParameters()[i].getType().getName();
+                            while (parametres.contains("."))
+                                parametres = "," + parametres.substring(parametres.indexOf(".")).substring(1);
+                            methode += parametres;
+                        }
+                    }
+                    String returnType = method.getReturnType().getName();
+                    while (returnType.contains(".")) {
+                        returnType = returnType.substring(returnType.indexOf('.')).substring(1);
+                    }
+                    res.methodes.add(methode + "):" + returnType);
+                }
+
+                Class p = classe.getSuperclass();
+                if (p != null) {
+                    if (p.isInterface()) {
+                        res.parents = new Interface();
+                    } else {
+                        if (p.toGenericString().contains("abstract")) {
+                            res.parents = new Abstract();
+                        } else {
+                            res.parents = new Classe(p.getSimpleName(), p.getPackageName());
+                        }
                     }
                 }
-                String returnType = method.getReturnType().getName();
-                while (returnType.contains(".")) {
-                    returnType = returnType.substring(returnType.indexOf('.')).substring(1);
+
+                if (classe.getInterfaces() != null) {
+                    for (Class i : classe.getInterfaces()) {
+                        res.interfaces.add(new Interface());
+                    }
                 }
-                res.methodes.add(methode + "):" + returnType);
+
             }
-        }
         catch (ClassNotFoundException classNotFoundException){
             System.out.println("Classe introuvable");
         }
+
+        res.attributs.sort(Comparator.naturalOrder());
+        res.constructeurs.sort(Comparator.naturalOrder());
+        res.methodes.sort(Comparator.naturalOrder());
 
         return res;
     }

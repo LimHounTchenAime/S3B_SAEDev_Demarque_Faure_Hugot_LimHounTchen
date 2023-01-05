@@ -1,5 +1,9 @@
 package Modele;
 
+import Modele.Abstract;
+import Modele.Concrete;
+import Modele.Interface;
+
 public class Principale {
 
     public static void main(String[] args) {
