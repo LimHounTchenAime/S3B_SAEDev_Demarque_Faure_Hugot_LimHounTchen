@@ -7,8 +7,4 @@ public class Interface extends Classe{
         super(name,packageName);
         this.typeClasse="Interface";
     }
-
-    public String toString() {
-        return this.typeClasse+"\n"+super.toString();
-    }
 }
