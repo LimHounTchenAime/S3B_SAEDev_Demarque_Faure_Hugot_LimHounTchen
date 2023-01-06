@@ -10,14 +10,12 @@ public class Classe {
     public Classe(String name, String nomPackage) {
         this.typeClasse="Concrete";
         this.nomClasse=name;
-        if(!nomPackage.isEmpty()) {
-            this.nomPackage = nomPackage;
-            this.fileName = this.nomPackage+".";
-        }
-        this.fileName+=this.nomClasse;
+        this.nomPackage = nomPackage;
+        this.attributs = new ArrayList<String>();
+        this.constructeurs = new ArrayList<String>();
+        this.methodes = new ArrayList<String>();
         this.interfaces = new ArrayList<Classe>();
     }
-    protected String fileName;
     protected String typeClasse;
     protected String nomClasse;
     protected String nomPackage;
@@ -66,8 +64,6 @@ public class Classe {
         return this.parents;
     }
 
-    public String getFileName() { return this.fileName; }
-
     public List<Classe> getInterfaces(){ return this.interfaces; }
 
     public String toString() {
@@ -84,7 +80,7 @@ public class Classe {
     }
 
     public void determinerParent() throws ClassNotFoundException {
-        Class c = Class.forName(this.fileName);
+        Class c = Class.forName(this.nomPackage+"."+this.nomClasse);
         Class p = c.getSuperclass();
         if(p!=null){
             if(p.isInterface()){
@@ -118,12 +114,12 @@ public class Classe {
             String parametres;
 
             if (classe.isInterface())
-                res = new Interface();
+                res = new Interface(classe.getSimpleName(),classe.getPackageName());
             else
                 if (classe.toGenericString().contains("abstract"))
-                    res = new Abstract();
+                    res = new Abstract(classe.getSimpleName(),classe.getPackageName());
                  else {
-                    res = new Concrete();
+                    res = new Classe(classe.getSimpleName(),classe.getPackageName());
                 }
 
                 res.nomClasse = classe.getName();
@@ -201,7 +197,7 @@ public class Classe {
 
                 if (classe.getInterfaces() != null) {
                     for (Class i : classe.getInterfaces()) {
-                        res.interfaces.add(new Interface());
+                        res.interfaces.add(new Interface(classe.getSimpleName(),classe.getPackageName()));
                     }
                 }
 

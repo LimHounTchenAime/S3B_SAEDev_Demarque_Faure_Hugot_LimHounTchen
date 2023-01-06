@@ -12,9 +12,9 @@ public class Principale {
 //        Abstract abs = new Abstract();
 //        Interface inter = new Interface();
 //        Apres modification des constructeurs
-        Classe conc = Classe.analyserClasse("ClasseTest.Test");
-        Classe abs = Classe.analyserClasse("ClasseTest.TestAbstract");
-        Classe inter = Classe.analyserClasse("ClasseTest.TestInterface");
+        Classe conc = Classe.creerClasse("ClasseTest.Test");
+        Classe abs = Classe.creerClasse("ClasseTest.TestAbstract");
+        Classe inter = Classe.creerClasse("ClasseTest.TestInterface");
 
         System.out.println("Affichage classe Concrete \n");
         System.out.println(conc.toString());

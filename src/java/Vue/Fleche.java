@@ -4,7 +4,7 @@ import Modele.Sujet;
 
 public class Fleche implements Observateur {
     public Fleche(){
-        
+
     }
 
     @Override
