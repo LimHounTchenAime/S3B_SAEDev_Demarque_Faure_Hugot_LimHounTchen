@@ -1,18 +1,16 @@
 package Modele;
 
-import Modele.Classe;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LesTestsDeMomo {
+class TestDeterminerParent {
 
     @Test
     void TestdeterminerParent() throws ClassNotFoundException {
         Classe c = new Classe("Poisson", "ClasseTest");
         c.determinerParent();
         Classe parent = new Classe("Animal", "ClasseTest");
-
 
         System.out.println("----Classe Parent de Poisson----");
         System.out.println(c.getParents().getNomClasse()+" - "+parent.getNomClasse());
