@@ -1,5 +1,10 @@
 package Modele;
 
+/**
+ * Classe servant au test de l affichage de la methode toString() dans un terminal avec des informations quelconques
+ * d une classe Concrete
+ */
+
 public class ClasseConcreteDeTest {
     public int a;
     private static String b;

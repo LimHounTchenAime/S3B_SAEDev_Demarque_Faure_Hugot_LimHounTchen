@@ -7,6 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LesTestsDeMomo {
 
+
+    /**
+     * Test permettant de verifer que la methode determinerParent() de la classe Classe retourne bien
+     * la(les) bonne(s) classe(s) parente(s), si elle(s) existe(nt)
+     * @throws ClassNotFoundException
+     */
     @Test
     void TestdeterminerParent() throws ClassNotFoundException {
         Classe c = new Classe("Poisson", "ClasseTest");
@@ -22,6 +28,12 @@ class LesTestsDeMomo {
         assertEquals(c.getParents().getNomPackage(), parent.getNomPackage());
     }
 
+
+    /**
+     * Test permettant de verifier que la methode determinerInterface() de la classe Classe retourne bien
+     * la bonne interface correspondante, si elle existe
+     * @throws ClassNotFoundException
+     */
     @Test
     void TestdeterminerInterface() throws ClassNotFoundException{
         Classe c = new Classe("Poisson", "ClasseTest");
