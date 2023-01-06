@@ -14,6 +14,7 @@ public class Pointeur extends StackPane {
     Rectangle t;
 
     public Pointeur(Position p){
+        this.setVisible(false);
         this.p=p;
         this.setLayoutX(this.p.X);
         this.setLayoutY(this.p.Y);
@@ -42,16 +43,6 @@ public class Pointeur extends StackPane {
     }
 
     public void etat(boolean b){
-        if(b){
-            this.c.setFill(Color.RED);
-            this.c.setRadius(20);
-            this.t.setWidth(this.getWidth());
-            this.t.setWidth(this.getHeight());
-        }else{
-            this.c.setFill(Color.BLUE);
-            this.c.setRadius(40);
-            this.t.setWidth(this.getWidth());
-            this.t.setWidth(this.getHeight());
-        }
+        this.setVisible(b);
     }
 }
