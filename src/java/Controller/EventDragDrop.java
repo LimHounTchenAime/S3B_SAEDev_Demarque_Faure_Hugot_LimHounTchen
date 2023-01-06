@@ -35,7 +35,7 @@ public class EventDragDrop implements EventHandler<DragEvent> {
                 gen.mouvement(false);
                 gen.update(db.getFiles().get(0).getName());
                 Position pos=new Position(event.getX(),event.getY());
-                gen.dropper(pos);
+                gen.dropper(pos,db.getFiles().get(0).getName());
                 success = true;
             }
             event.setDropCompleted(success);
