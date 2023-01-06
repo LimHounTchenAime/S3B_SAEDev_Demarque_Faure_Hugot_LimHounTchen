@@ -8,7 +8,6 @@ import java.util.List;
 public class Classe {
 
     public Classe(String name, String nomPackage) {
-        this.typeClasse="Concrete";
         this.nomClasse=name;
         this.nomPackage = nomPackage;
         this.attributs = new ArrayList<String>();
@@ -198,6 +197,7 @@ public class Classe {
                 if (classe.getInterfaces() != null) {
                     for (Class i : classe.getInterfaces()) {
                         res.interfaces.add(new Interface(classe.getSimpleName(),classe.getPackageName()));
+
                     }
                 }
 

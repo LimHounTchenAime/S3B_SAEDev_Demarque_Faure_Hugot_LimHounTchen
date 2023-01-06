@@ -13,10 +13,10 @@ class AbstractTest {
                 "ClasseAbstractDeTest\n" +
                 "Modele\n" +
                 "________________\n" +
-                "[String s, int i, private static b:String, protected final c:boolean, public a:int]\n" +
+                "[private static b:String, protected final c:boolean, public a:int]\n" +
                 "________________\n" +
-                "[Test(int i), private ClasseAbstractDeTest(int), protected ClasseAbstractDeTest(int,String), public ClasseAbstractDeTest()]\n" +
+                "[private ClasseAbstractDeTest(int), protected ClasseAbstractDeTest(int,String), public ClasseAbstractDeTest()]\n" +
                 "________________\n" +
-                "[ajouterTest():void, private f2(int):int, protected f3(int,int,String):String, public f1():void, supprimerTest():void]\n", abstraite.toString());
+                "[private f2(int):int, protected f3(int,int,String):String, public f1():void]\n", abstraite.toString());
     }
 }

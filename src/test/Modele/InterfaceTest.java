@@ -14,10 +14,10 @@ class InterfaceTest {
                 "InterfaceDeTest\n" +
                 "Modele\n" +
                 "________________\n" +
-                "[String s, int i]\n" +
+                "[]\n" +
                 "________________\n" +
-                "[Test(int i)]\n" +
+                "[]\n" +
                 "________________\n" +
-                "[ajouterTest():void, private f2(int):int, private f3(String,int,String):String, public abstract f1():void, supprimerTest():void]\n", inter.toString());
+                "[private f2(int):int, private f3(String,int,String):String, public abstract f1():void]\n", inter.toString());
     }
 }
