@@ -1,0 +1,4 @@
+Objectifs atteints :
+
+- Finalisation des tests vérifiant le bon fonctionnement de la fonctionalité d'introspection des classes pour les interfaces et
+classes abstraites

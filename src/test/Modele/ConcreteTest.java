@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ConcreteTest {
     @Test
     public void test() {
-        Classe concrete=Classe.analyserClasse("Modele.ClasseConcreteDeTest");
+        Classe concrete=Classe.creerClasse("D:\\S3B\\Java\\SAEDEV\\src\\java\\Modele\\Concrete.java");
         System.out.println(concrete.toString());
         assertEquals("<<Java Classe>>\n" +
                 "ClasseConcreteDeTest\n" +

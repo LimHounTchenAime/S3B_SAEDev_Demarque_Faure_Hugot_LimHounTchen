@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AbstractTest {
     @Test
     public void abstractTest(){
-        Classe abstraite=Classe.analyserClasse("Modele.ClasseAbstractDeTest");
+        Classe  abstraite=Classe.creerClasse("Modele.ClasseAbstractDeTest");
         System.out.println(abstraite.toString());
         assertEquals("<<Java Abstract>>\n" +
                 "ClasseAbstractDeTest\n" +

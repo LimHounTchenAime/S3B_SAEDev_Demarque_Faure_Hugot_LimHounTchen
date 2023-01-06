@@ -8,7 +8,7 @@ class InterfaceTest {
 
     @Test
     public void interfaceTest(){
-        Classe inter=Classe.analyserClasse("Modele.InterfaceDeTest");
+        Classe inter=Classe.creerClasse("Modele.InterfaceDeTest");
         System.out.println(inter.toString());
         assertEquals("<<Java Interface>>\n" +
                 "InterfaceDeTest\n" +
