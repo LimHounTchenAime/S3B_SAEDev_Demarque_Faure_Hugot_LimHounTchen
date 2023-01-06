@@ -7,10 +7,14 @@ import Modele.Interface;
 public class Principale {
 
     public static void main(String[] args) {
-
-        Concrete conc = new Concrete();
-        Abstract abs = new Abstract();
-        Interface inter = new Interface();
+//        Avant modification des constructeurs
+//        Concrete conc = new Concrete();
+//        Abstract abs = new Abstract();
+//        Interface inter = new Interface();
+//        Apres modification des constructeurs
+        Classe conc = Classe.analyserClasse("ClasseTest.Test");
+        Classe abs = Classe.analyserClasse("ClasseTest.TestAbstract");
+        Classe inter = Classe.analyserClasse("ClasseTest.TestInterface");
 
         System.out.println("Affichage classe Concrete \n");
         System.out.println(conc.toString());
