@@ -7,16 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ConcreteTest {
     @Test
     public void test() {
-        Classe concrete=Classe.creerClasse("D:\\S3B\\Java\\SAEDEV\\src\\java\\Modele\\Concrete.java");
+        Classe concrete=Classe.creerClasse("Modele.ClasseConcreteDeTest");
         System.out.println(concrete.toString());
         assertEquals("<<Java Classe>>\n" +
                 "ClasseConcreteDeTest\n" +
                 "Modele\n" +
                 "________________\n" +
-                "[String s, int i, private static b:String, protected final c:boolean, public a:int]\n" +
+                "[private static b:String, protected final c:boolean, public a:int]\n" +
                 "________________\n" +
-                "[Test(int i), private ClasseConcreteDeTest(int), protected ClasseConcreteDeTest(int,String), public ClasseConcreteDeTest()]\n" +
+                "[private ClasseConcreteDeTest(int), protected ClasseConcreteDeTest(int,String), public ClasseConcreteDeTest()]\n" +
                 "________________\n" +
-                "[ajouterTest():void, private f2(int):int, protected f3(int,int,String):String, public f1():void, supprimerTest():void]\n", concrete.toString());
+                "[private f2(int):int, protected f3(int,int,String):String, public f1():void]\n", concrete.toString());
     }
 }

@@ -8,14 +8,11 @@ import java.util.List;
 public class Classe {
 
     public Classe(String name, String nomPackage) {
-        this.typeClasse="Concrete";
         this.nomClasse=name;
-        if(!nomPackage.isEmpty()) {
-            this.nomPackage = nomPackage;
-            this.fileName = this.nomPackage+".";
-        }
-        this.fileName+=this.nomClasse;
-        this.interfaces = new ArrayList<Classe>();
+        this.nomPackage=nomPackage;
+        this.attributs=new ArrayList<>();
+        this.constructeurs=new ArrayList<>();
+        this.methodes=new ArrayList<>();
     }
     protected String fileName;
     protected String typeClasse;
@@ -118,12 +115,12 @@ public class Classe {
             String parametres;
 
             if (classe.isInterface())
-                res = new Interface();
+                res = new Interface("", "");
             else
                 if (classe.toGenericString().contains("abstract"))
-                    res = new Abstract();
+                    res = new Abstract("", "");
                  else {
-                    res = new Concrete();
+                    res = new Concrete("", "");
                 }
 
                 res.nomClasse = classe.getName();
@@ -201,7 +198,7 @@ public class Classe {
 
                 if (classe.getInterfaces() != null) {
                     for (Class i : classe.getInterfaces()) {
-                        res.interfaces.add(new Interface());
+                        res.interfaces.add(new Interface("", ""));
                     }
                 }
 
