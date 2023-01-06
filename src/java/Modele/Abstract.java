@@ -7,8 +7,4 @@ public class Abstract extends Classe{
         super(name,packageName);
         this.typeClasse="Abstract";
     }
-
-    public String toString() {
-        return this.typeClasse+"\n"+super.toString();
-    }
 }
