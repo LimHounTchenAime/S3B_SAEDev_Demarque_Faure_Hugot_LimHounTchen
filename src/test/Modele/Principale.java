@@ -2,12 +2,12 @@ package Modele;
 
 public class Principale {
 
+    /**
+     * Programme principal permettant de visualiser l affichage des classes dans un terminal directement
+     * @param args
+     */
     public static void main(String[] args) {
-//        Avant modification des constructeurs
-//        Concrete conc = new Concrete();
-//        Abstract abs = new Abstract();
-//        Interface inter = new Interface();
-//        Apres modification des constructeurs
+
         Classe conc = Classe.creerClasse("ClasseTest.Test");
         Classe abs = Classe.creerClasse("ClasseTest.TestAbstract");
         Classe inter = Classe.creerClasse("ClasseTest.TestInterface");

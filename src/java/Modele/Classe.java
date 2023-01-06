@@ -7,6 +7,12 @@ import java.util.List;
 
 public class Classe {
 
+    /**
+     * Constructeur créant un objet Classe dans le but de l'afficher
+     * @param name nom de la classe
+     * @param nomPackage nom du package de la classe
+     */
+
     public Classe(String name, String nomPackage) {
         this.nomClasse=name;
         this.nomPackage = nomPackage;
@@ -15,6 +21,7 @@ public class Classe {
         this.methodes = new ArrayList<String>();
         this.interfaces = new ArrayList<Classe>();
     }
+
     protected String typeClasse;
     protected String nomClasse;
     protected String nomPackage;
@@ -24,16 +31,6 @@ public class Classe {
     protected Classe parents;
 
     protected List<Classe> interfaces;
-
-    /**
-     * TODO
-     * Constructeur ayant pour but de tester la méthode toString dans un programme
-     * principal.
-     * A remplacer par le constructeur utilisant un nom de fichier ayant les
-     * informations sur une classe
-     */
-
-    //public Classe(String nomFichier);
 
     public String getTypeClasse() {
         return this.typeClasse;
@@ -65,18 +62,31 @@ public class Classe {
 
     public List<Classe> getInterfaces(){ return this.interfaces; }
 
+    /**
+     * Methode permettant d afficher les informations d une classe dans un terminal sous forme de texte
+     * @return informations de la classe
+     */
+
     public String toString() {
         String res="<<Java "+this.typeClasse+">>\n";
         res+=this.nomClasse + "\n";
         res+=this.nomPackage + "\n";
-        res+="________________\n";
+        res+="_________\n";
         res+=this.attributs.toString() + "\n";
-        res+="________________\n";
+        res+="_________\n";
         res+=this.constructeurs.toString() + "\n";
-        res+="________________\n";
+        res+="_________\n";
         res+=this.methodes.toString() + "\n";
+        res+="_________\n";
+        res+="Parents de " + this.nomClasse + "\n";
+        res+=this.parents.toString() + "\n";
         return res;
     }
+
+    /**
+     * Methode permettant de déterminer le parent d une classe afin de pouvoir l'afficher correctement au bon endroit
+     * @throws ClassNotFoundException
+     */
 
     public void determinerParent() throws ClassNotFoundException {
         Class c = Class.forName(this.nomPackage+"."+this.nomClasse);
@@ -99,6 +109,12 @@ public class Classe {
             }
         }
     }
+
+    /**
+     * Methode permettant de creer une classe a afficher
+     * @param cheminClasse chemin vers le fichier de cette classe
+     * @return classe a afficher
+     */
 
     public static Classe creerClasse(String cheminClasse) {
         Classe res=null;
