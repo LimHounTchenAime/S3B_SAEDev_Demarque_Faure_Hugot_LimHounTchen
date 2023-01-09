@@ -16,18 +16,19 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    PreviewApparence preview;
+    General general;
     Scene scene;
 
     public void start(Stage stage) {
-        General general=new General();
-        EventDragDrop drag=new EventDragDrop(general);
-        EventClickDroit click=new EventClickDroit(general);
-        general.setOnDragOver(drag);
-        general.setOnDragDropped(drag);
-        general.setOnMouseClicked(click);
+        this.general=new General();
+        EventDragDrop drag=new EventDragDrop(this.general);
+        EventClickDroit click=new EventClickDroit(this.general);
+        this.general.setOnDragOver(drag);
+        this.general.setOnDragDropped(drag);
+        this.general.setOnMouseClicked(click);
 
         // --------
+        /***
         Classe concrete=Classe.creerClasse("Main.TestDeClasse");
         ClasseApparence apparence=new ClasseApparence(concrete.getNomClasse(),concrete.getAttributs(),concrete.getConstructeurs(),concrete.getMethodes());
 
@@ -47,9 +48,10 @@ public class Main extends Application {
         Pane boite=new Pane();
         boite.setPrefSize(800,600);
         boite.getChildren().addAll(apparence,apparence2,this.preview);
-        EventMouseFollow mouse=new EventMouseFollow(this.preview);
+         ***/
         // --------
-        this.scene=new Scene(general ,800,600);
+        EventMouseFollow mouse=new EventMouseFollow(this.general.getPreview());
+        this.scene=new Scene(this.general ,800,600);
         this.scene.setOnMouseDragged(mouse);
         stage.setScene(this.scene);
         stage.show();
@@ -67,7 +69,7 @@ public class Main extends Application {
     }
 
     public void update(){
-        this.preview.suivre();
+        this.general.updatePreview();
     }
 
     public static void main(String[] args) {

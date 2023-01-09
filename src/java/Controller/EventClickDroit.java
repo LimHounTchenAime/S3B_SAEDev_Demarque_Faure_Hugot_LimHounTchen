@@ -17,9 +17,9 @@ public class EventClickDroit implements EventHandler<MouseEvent> {
         String bouton=mouseEvent.getButton().toString();
         if(bouton.equals("SECONDARY")){
             Position pos=new Position(mouseEvent.getX(),mouseEvent.getY());
-            this.gen.menu(true,pos);
+            //event active
         }else{
-            this.gen.menu(false,null);
+            //event desactive
         }
     }
 }
