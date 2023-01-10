@@ -1,0 +1,17 @@
+Aimé :
+    - Ajout fonctionnalité permettant de charger une classe en dehors des dossiers du projet
+        - L'idée était d'utiliser URLClassLoader permettant de créer un objet ClassLoader à partir d'un objet URL créé à partir
+        d'un chemin de fichier et de créer un objet Class avec la méthode loadClass(String) de ClassLoader.
+        Le problème était que le paramètre à ajouter devait être un nom binaire(nomPackage.nomClasse) et qu'il fallait que
+        la classe soit compilée pour utiliser le classLoader.
+        Ces problèmes n'ayant pas été résolus, une autre solution a été proposée
+
+        - Faire un copier-coller de la classe java à charger dans le package ClassesChargees.
+        L'inconvénient c'est qu'il faut que cette classe puisse être compilée, sinon IntelliJ affiche un message d'erreur et
+        empêche l'exécution de la méthode.
+
+Amaury :
+
+Benjamin :
+
+Solène :

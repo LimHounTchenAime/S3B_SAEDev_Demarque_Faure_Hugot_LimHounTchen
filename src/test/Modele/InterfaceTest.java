@@ -12,11 +12,11 @@ class InterfaceTest {
      */
     @Test
     public void interfaceTest(){
-        Classe inter=Classe.creerClasse("Modele.InterfaceDeTest");
+        Classe inter=Classe.creerClasse("ClasseTest.InterfaceDeTest");
         System.out.println(inter.toString());
         assertEquals("<<Java Interface>>\n" +
                 "InterfaceDeTest\n" +
-                "Modele\n" +
+                "ClasseTest\n" +
                 "_________\n" +
                 "[]\n" +
                 "_________\n" +

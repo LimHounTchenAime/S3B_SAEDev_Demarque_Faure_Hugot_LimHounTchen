@@ -1,4 +1,4 @@
-package Modele;
+package ClasseTest;
 
 /**
  * Interface servant au test de l affichage de la methode toString() dans un terminal avec des informations quelconques

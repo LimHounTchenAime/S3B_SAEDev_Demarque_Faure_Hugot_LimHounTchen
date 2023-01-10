@@ -11,11 +11,11 @@ class AbstractTest {
      */
     @Test
     public void abstractTest(){
-        Classe  abstraite=Classe.creerClasse("Modele.ClasseAbstractDeTest");
+        Classe  abstraite=Classe.creerClasse("ClasseTest.ClasseAbstractDeTest");
         System.out.println(abstraite.toString());
         assertEquals("<<Java Abstract>>\n" +
                 "ClasseAbstractDeTest\n" +
-                "Modele\n" +
+                "ClasseTest\n" +
                 "_________\n" +
                 "[private static b:String, protected final c:boolean, public a:int]\n" +
                 "_________\n" +
