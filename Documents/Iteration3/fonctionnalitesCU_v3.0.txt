@@ -1,5 +1,5 @@
 Aimé :
-- Test de la méthode vérifiée à l'aide de la classe Modele.ConcreteTest et Modele.ClasseConcreteDeTest
+- Test de la méthode vérifiée à l'aide de la classe Modele.ConcreteTest et ClasseTest.ClasseConcreteDeTest
 
 Amaury :
 -
