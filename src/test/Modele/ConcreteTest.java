@@ -11,11 +11,11 @@ class ConcreteTest {
      */
     @Test
     public void test() {
-        Classe concrete=Classe.creerClasse("Modele.ClasseConcreteDeTest");
+        Classe concrete=Classe.creerClasse("ClasseTest.ClasseConcreteDeTest");
         System.out.println(concrete.toString());
         assertEquals("<<Java Classe>>\n" +
                 "ClasseConcreteDeTest\n" +
-                "Modele\n" +
+                "ClasseTest\n" +
                 "_________\n" +
                 "[private static b:String, protected final c:boolean, public a:int]\n" +
                 "_________\n" +

@@ -1,7 +1,7 @@
 Aimé :
 - Fonctionnalité permettant de créer un objet Classe à partir d'un nom de fichier grâce à l'introspection faite
 de la méthode analyserClasse
-- Test de la méthode vérifiée à l'aide de la classe Modele.ConcreteTest et Modele.ClasseConcreteDeTest
+- Test de la méthode vérifiée à l'aide de la classe Modele.ConcreteTest et ClasseTest.ClasseConcreteDeTest
 
 Amaury :
 - Fonctionnalité permettant de trouver les parents d'une classe avec la grâce à la méthode determinerParent

@@ -15,13 +15,12 @@ public class Classe {
 
     public Classe(String name, String nomPackage) {
         this.nomClasse=name;
-        this.nomPackage = nomPackage;
-        this.attributs = new ArrayList<String>();
-        this.constructeurs = new ArrayList<String>();
-        this.methodes = new ArrayList<String>();
-        this.interfaces = new ArrayList<Classe>();
+        this.nomPackage=nomPackage;
+        this.attributs=new ArrayList<>();
+        this.constructeurs=new ArrayList<>();
+        this.methodes=new ArrayList<>();
     }
-
+    protected String fileName;
     protected String typeClasse;
     protected String nomClasse;
     protected String nomPackage;
@@ -31,6 +30,16 @@ public class Classe {
     protected Classe parents;
 
     protected List<Classe> interfaces;
+
+    /**
+     * TODO
+     * Constructeur ayant pour but de tester la méthode toString dans un programme
+     * principal.
+     * A remplacer par le constructeur utilisant un nom de fichier ayant les
+     * informations sur une classe
+     */
+
+    //public Classe(String nomFichier);
 
     public String getTypeClasse() {
         return this.typeClasse;
@@ -60,6 +69,8 @@ public class Classe {
         return this.parents;
     }
 
+    public String getFileName() { return this.fileName; }
+
     public List<Classe> getInterfaces(){ return this.interfaces; }
 
     /**
@@ -71,11 +82,11 @@ public class Classe {
         String res="<<Java "+this.typeClasse+">>\n";
         res+=this.nomClasse + "\n";
         res+=this.nomPackage + "\n";
-        res+="_________\n";
+        res+="________________\n";
         res+=this.attributs.toString() + "\n";
-        res+="_________\n";
+        res+="________________\n";
         res+=this.constructeurs.toString() + "\n";
-        res+="_________\n";
+        res+="________________\n";
         res+=this.methodes.toString() + "\n";
         res+="_________\n";
         if(this.parents!=null) {
@@ -122,9 +133,35 @@ public class Classe {
         Classe res=null;
 
         try {
+            Class classe=null;
+            if(!cheminClasse.contains("\\"))
+                classe = Class.forName(cheminClasse);
+            else{
 
+                    //fonctionnalite permettant de lire une classe externe au projet
 
-            Class classe = Class.forName(cheminClasse);
+                String className= Path.of(cheminClasse).getFileName().toString().replace(".java", "");
+
+                BufferedReader bufferedReader=new BufferedReader(new FileReader(cheminClasse));
+                BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("src/java/ClassesChargees/"+className+".java"));
+                bufferedWriter.write("package ClassesChargees;\n");
+                String line="";
+                while((line=bufferedReader.readLine())!=null){
+                    if(!line.contains("package"))
+                        bufferedWriter.write(line+"\n");
+                }
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                classe=Class.forName("ClassesChargees."+className);
+
+                /*
+                URL classUrl=new File(cheminClasse).toURI().toURL();
+                ClassLoader classLoader=new URLClassLoader(new URL[]{classUrl});
+                classe=classLoader.loadClass("test.Classe1");
+                 */
+            }
+
+            System.out.println();
             Field[] attributs = classe.getDeclaredFields();
             Constructor[] constructeurs = classe.getDeclaredConstructors();
             Method[] methodes = classe.getDeclaredMethods();
@@ -140,7 +177,7 @@ public class Classe {
                 }
 
                 res.nomClasse = classe.getName();
-                if (res.nomClasse.contains("."))
+                while (res.nomClasse.contains("."))
                     res.nomClasse = res.nomClasse.substring(res.nomClasse.indexOf(".")).substring(1);
 
                 res.nomPackage = classe.getPackageName();
@@ -218,6 +255,15 @@ public class Classe {
         catch (ClassNotFoundException classNotFoundException){
             System.out.println("Classe introuvable");
         }
+        catch (IOException ioException){
+            System.out.println("Fichier introuvable");
+        }
+        /*
+        catch (URISyntaxException uriSyntaxException){
+
+        }
+
+         */
 
         res.attributs.sort(Comparator.naturalOrder());
         res.constructeurs.sort(Comparator.naturalOrder());
