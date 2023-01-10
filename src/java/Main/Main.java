@@ -21,35 +21,11 @@ public class Main extends Application {
 
     public void start(Stage stage) {
         this.general=new General();
+        EventClickDroit ecd=new EventClickDroit(this.general.mcd);
+        this.general.setOnMouseClicked(ecd);
         EventDragDrop drag=new EventDragDrop(this.general);
-        EventClickDroit click=new EventClickDroit(this.general);
         this.general.setOnDragOver(drag);
         this.general.setOnDragDropped(drag);
-        this.general.setOnMouseClicked(click);
-
-        // --------
-        /***
-        Classe concrete=Classe.creerClasse("Main.TestDeClasse");
-        ClasseApparence apparence=new ClasseApparence(concrete.getNomClasse(),concrete.getAttributs(),concrete.getConstructeurs(),concrete.getMethodes());
-
-        Classe concrete2=Classe.creerClasse("Main.Main");
-        ClasseApparence apparence2=new ClasseApparence(concrete2.getNomClasse(),concrete2.getAttributs(),concrete2.getConstructeurs(),concrete2.getMethodes());
-
-        this.preview=new PreviewApparence();
-
-        EventStartDrag sd=new EventStartDrag(apparence,this.preview);
-        apparence.setOnDragDetected(sd);
-        apparence.setOnMouseReleased(sd);
-
-        EventStartDrag sd2=new EventStartDrag(apparence2,this.preview);
-        apparence2.setOnDragDetected(sd2);
-        apparence2.setOnMouseReleased(sd2);
-
-        Pane boite=new Pane();
-        boite.setPrefSize(800,600);
-        boite.getChildren().addAll(apparence,apparence2,this.preview);
-         ***/
-        // --------
         EventMouseFollow mouse=new EventMouseFollow(this.general.getPreview());
         this.scene=new Scene(this.general ,800,600);
         this.scene.setOnMouseDragged(mouse);
