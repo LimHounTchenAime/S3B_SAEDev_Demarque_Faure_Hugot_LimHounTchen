@@ -78,8 +78,10 @@ public class Classe {
         res+="_________\n";
         res+=this.methodes.toString() + "\n";
         res+="_________\n";
-        res+="Parents de " + this.nomClasse + "\n";
-        res+=this.parents.toString() + "\n";
+        if(this.parents!=null) {
+            res += "Parents de " + this.nomClasse + "\n";
+            res += this.parents.toString() + "\n";
+        }
         return res;
     }
 
@@ -199,21 +201,16 @@ public class Classe {
 
                 Class p = classe.getSuperclass();
                 if (p != null) {
-                    if (p.isInterface()) {
-                        res.parents = new Interface(p.getSimpleName(),p.getPackageName());
+                    if (p.toGenericString().contains("abstract")) {
+                        res.parents = new Abstract(p.getSimpleName(),p.getPackageName());
                     } else {
-                        if (p.toGenericString().contains("abstract")) {
-                            res.parents = new Abstract(p.getSimpleName(),p.getPackageName());
-                        } else {
-                            res.parents = new Classe(p.getSimpleName(), p.getPackageName());
-                        }
+                        res.parents = new Classe(p.getSimpleName(), p.getPackageName());
                     }
                 }
 
                 if (classe.getInterfaces() != null) {
                     for (Class i : classe.getInterfaces()) {
-                        res.interfaces.add(new Interface(classe.getSimpleName(),classe.getPackageName()));
-
+                        res.interfaces.add(new Interface(i.getSimpleName(),i.getPackageName()));
                     }
                 }
 

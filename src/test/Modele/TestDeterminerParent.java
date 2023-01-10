@@ -8,15 +8,16 @@ class TestDeterminerParent {
 
 
     /**
-     * Test permettant de verifer que la methode determinerParent() de la classe Classe retourne bien
-     * la(les) bonne(s) classe(s) parente(s), si elle(s) existe(nt)
+     * Test permettant de verifer que la methode determinerParent() d'une classe retourne bien
+     * la bonne classe parente, si elle existe
      * @throws ClassNotFoundException
      */
     @Test
     void TestdeterminerParent() throws ClassNotFoundException {
-        Classe c = new Classe("Poisson", "ClasseTest");
-        c.determinerParent();
-        Classe parent = new Classe("Animal", "ClasseTest");
+//        Classe c = new Classe("Poisson", "ClasseTest");
+        Classe c = Classe.creerClasse("ClasseTest.Poisson");
+//        Classe parent = new Classe("Animal", "ClasseTest");
+        Classe parent = Classe.creerClasse("ClasseTest.Animal");
 
         System.out.println("----Classe Parent de Poisson----");
         System.out.println(c.getParents().getNomClasse()+" - "+parent.getNomClasse());
@@ -28,15 +29,14 @@ class TestDeterminerParent {
 
 
     /**
-     * Test permettant de verifier que la methode determinerInterface() de la classe Classe retourne bien
-     * la bonne interface correspondante, si elle existe
+     * Test permettant de verifier que la methode determinerParent() de la classe Classe retourne bien
+     * la liste des interfaces correspondante, si elle existe
      * @throws ClassNotFoundException
      */
     @Test
     void TestdeterminerInterface() throws ClassNotFoundException{
-        Classe c = new Classe("Poisson", "ClasseTest");
-        c.determinerParent();
-        Classe inter = new Classe("Aquatique", "ClasseTest");
+        Classe c = Classe.creerClasse("ClasseTest.Poisson");
+        Classe inter = Classe.creerClasse("ClasseTest.Aquatique");
         System.out.println("----Interfaces de Poisson----");
         System.out.println(c.getInterfaces().get(0).getNomClasse()+" - "+inter.getNomClasse());
         System.out.println(c.getInterfaces().get(0).getNomPackage()+" - "+inter.getNomPackage());

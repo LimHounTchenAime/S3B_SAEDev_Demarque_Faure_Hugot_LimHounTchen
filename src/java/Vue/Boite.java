@@ -1,10 +1,14 @@
 package Vue;
 
+import Modele.ClasseApparence;
 import Modele.Sujet;
 
 public class Boite implements Observateur {
-    public Boite() {
+    ClasseApparence ca;
 
+    public Boite(ClasseApparence ca) {
+        this.ca = ca;
+        ca.tailler();
     }
 
     @Override
