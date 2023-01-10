@@ -1,10 +1,12 @@
 package Vue;
 
 import Modele.Classe;
+import Modele.Position;
 import Modele.Sujet;
 
 public class Fleche implements Observateur {
     Classe fils, parent;
+    Position p1,p2;
     public Fleche(Classe f, Classe p){
         this.fils = f;
         this.parent = p;
