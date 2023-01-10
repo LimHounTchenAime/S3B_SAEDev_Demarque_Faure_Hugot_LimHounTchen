@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Classe permettant de tester si une classe externe au projet, se trouvant donc sur le PC
+ * à un autre endroit, peut tout de même être affichée
+ */
+
 public class TestClasseExterne {
     @Test
     public void test(){

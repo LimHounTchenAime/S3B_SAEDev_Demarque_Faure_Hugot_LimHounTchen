@@ -9,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
+/**
+ * Classe s'occupant de l'apparence graphique d'une classe
+ */
+
 public class ClasseApparence extends StackPane {
 
     Classe classic;
@@ -22,6 +26,11 @@ public class ClasseApparence extends StackPane {
         this.generateInside();
     }
 
+
+    /**
+     * Méthode permettant d'adapter la taille de la classe dans l'interface graphique suivant la longueur
+     * de ses informations
+     */
     public void tailler(){
         int hauteur = 3;
         int longueur = 0;
@@ -49,6 +58,10 @@ public class ClasseApparence extends StackPane {
         this.tailleY=hauteur*18;
     }
 
+
+    /**
+     * Methode permettant de générer le fond de la classe sur l'interface graphique
+     */
     public void generateFont() {
         this.tailler();
         Rectangle font=new Rectangle(0,0,tailleX,tailleY);
@@ -58,14 +71,20 @@ public class ClasseApparence extends StackPane {
         this.getChildren().addAll(font);
     }
 
+
+    /**
+     * Methode permettant de générer l'intérieur de la classe dans l'interface graphique
+     */
     public void generateInside(){
         VBox pack=new VBox();
         VBox debut=new VBox();
         debut.setAlignment(Pos.CENTER);
+        // affichage de ses informations telles que son nom, son type et son package
         Label name=new Label(" "+this.classic.getNomClasse());
         Label type=new Label(" <<"+this.classic.getTypeClasse()+">>");
         Label sous=new Label(" "+this.classic.getNomPackage());
         Label attri=new Label();
+        // affichage des attributs
         for(int i=0;i<this.classic.getAttributs().size();i++){
             if(i==0){
                 attri.setText(" "+this.classic.getAttributs().get(i));
@@ -73,6 +92,7 @@ public class ClasseApparence extends StackPane {
                 attri.setText(attri.getText()+"\n "+this.classic.getAttributs().get(i));
             }
         }
+        // affichage des constructeurs
         Label constr=new Label();
         for(int i=0;i<this.classic.getConstructeurs().size();i++){
             if(i==0){
@@ -81,6 +101,7 @@ public class ClasseApparence extends StackPane {
                 constr.setText(constr.getText()+"\n "+this.classic.getConstructeurs().get(i));
             }
         }
+        // affichage de ses methodes
         Label font=new Label();
         for(int i=0;i<this.classic.getMethodes().size();i++){
             if(i==0){

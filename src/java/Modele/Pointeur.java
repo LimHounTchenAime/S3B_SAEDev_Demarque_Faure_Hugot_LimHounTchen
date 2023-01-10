@@ -6,6 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Classe représentant un pointeur dans l'interface graphique
+ */
+
 public class Pointeur extends StackPane {
 
     Circle c;
@@ -25,11 +29,21 @@ public class Pointeur extends StackPane {
         this.getChildren().addAll(t,c,l);
     }
 
+
+    /**
+     * Méthode permettant de changer le texte du pointeur
+     * @param s texte à changer
+     */
     public void changerText(String s){
         this.l.setText(s);
         this.t.setWidth(this.getWidth());
         this.t.setWidth(this.getHeight());
     }
+
+    /**
+     * Méthode permettant de déplacer le pointeur
+     * @param p position à déduire de la position actuelle du pointeur
+     */
 
     public void deplacer(Position p){
         this.p.X=p.X;
