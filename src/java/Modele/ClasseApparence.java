@@ -11,42 +11,38 @@ import java.util.List;
 
 public class ClasseApparence extends StackPane {
 
-    String nom;
-    List<String> attribut, constructor, fonction;
+    Classe classic;
     Boolean suivre;
     int tailleX,tailleY;
 
-    public ClasseApparence(String n, List<String> a,List<String> c, List<String> f) {
-        this.nom = n;
-        this.attribut = a;
-        this.constructor = c;
-        this.fonction = f;
+    public ClasseApparence(Classe c) {
+        this.classic=c;
         this.suivre=false;
         this.generateFont();
         this.generateInside();
     }
 
     public void tailler(){
-        int hauteur = 1;
+        int hauteur = 3;
         int longueur = 0;
-        hauteur += this.attribut.size();
-        hauteur += this.fonction.size();
-        hauteur += this.constructor.size();
+        hauteur += this.classic.getAttributs().size();
+        hauteur += this.classic.getMethodes().size();
+        hauteur += this.classic.getConstructeurs().size();
         //---------------------
-        longueur=this.nom.length();
-        for(int i=0;i<this.attribut.size();i++){
-            if(longueur<this.attribut.get(i).length()){
-                longueur=this.attribut.get(i).length();
+        longueur=this.classic.getNomClasse().length();
+        for(int i=0;i<this.classic.getAttributs().size();i++){
+            if(longueur<this.classic.getAttributs().get(i).length()){
+                longueur=this.classic.getAttributs().get(i).length();
             }
         }
-        for(int i=0;i<this.fonction.size();i++){
-            if(longueur<this.fonction.get(i).length()){
-                longueur=this.fonction.get(i).length();
+        for(int i=0;i<this.classic.getMethodes().size();i++){
+            if(longueur<this.classic.getMethodes().get(i).length()){
+                longueur=this.classic.getMethodes().get(i).length();
             }
         }
-        for(int i=0;i<this.constructor.size();i++){
-            if(longueur<this.constructor.get(i).length()){
-                longueur=this.constructor.get(i).length();
+        for(int i=0;i<this.classic.getConstructeurs().size();i++){
+            if(longueur<this.classic.getConstructeurs().get(i).length()){
+                longueur=this.classic.getConstructeurs().get(i).length();
             }
         }
         this.tailleX=longueur*6;
@@ -64,30 +60,33 @@ public class ClasseApparence extends StackPane {
 
     public void generateInside(){
         VBox pack=new VBox();
-        //pack.setAlignment(Pos.CENTER);
-        Label name=new Label(" "+this.nom);
+        VBox debut=new VBox();
+        debut.setAlignment(Pos.CENTER);
+        Label name=new Label(" "+this.classic.getNomClasse());
+        Label type=new Label(" <<"+this.classic.getTypeClasse()+">>");
+        Label sous=new Label(" "+this.classic.getNomPackage());
         Label attri=new Label();
-        for(int i=0;i<this.attribut.size();i++){
+        for(int i=0;i<this.classic.getAttributs().size();i++){
             if(i==0){
-                attri.setText(" "+this.attribut.get(i));
+                attri.setText(" "+this.classic.getAttributs().get(i));
             }else{
-                attri.setText(attri.getText()+"\n "+this.attribut.get(i));
+                attri.setText(attri.getText()+"\n "+this.classic.getAttributs().get(i));
             }
         }
         Label constr=new Label();
-        for(int i=0;i<this.constructor.size();i++){
+        for(int i=0;i<this.classic.getConstructeurs().size();i++){
             if(i==0){
-                constr.setText(" "+this.constructor.get(i));
+                constr.setText(" "+this.classic.getConstructeurs().get(i));
             }else{
-                constr.setText(constr.getText()+"\n "+this.constructor.get(i));
+                constr.setText(constr.getText()+"\n "+this.classic.getConstructeurs().get(i));
             }
         }
         Label font=new Label();
-        for(int i=0;i<this.fonction.size();i++){
+        for(int i=0;i<this.classic.getMethodes().size();i++){
             if(i==0){
-                font.setText(" "+this.fonction.get(i));
+                font.setText(" "+this.classic.getMethodes().get(i));
             }else{
-                font.setText(font.getText()+"\n "+this.fonction.get(i));
+                font.setText(font.getText()+"\n "+this.classic.getMethodes().get(i));
             }
         }
         Rectangle barre=new Rectangle(0,0,tailleX,2);
@@ -96,7 +95,8 @@ public class ClasseApparence extends StackPane {
         barre2.setFill(Color.rgb(0,0,0));
         Rectangle barre3=new Rectangle(0,0,tailleX,2);
         barre3.setFill(Color.rgb(0,0,0));
-        pack.getChildren().addAll(name,barre,attri,barre2,constr,barre3,font);
+        debut.getChildren().addAll(type,name,sous);
+        pack.getChildren().addAll(debut,barre,attri,barre2,constr,barre3,font);
         this.getChildren().addAll(pack);
     }
 

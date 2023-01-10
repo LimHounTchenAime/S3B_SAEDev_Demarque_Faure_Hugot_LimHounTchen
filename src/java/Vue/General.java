@@ -33,7 +33,7 @@ public class General extends Pane {
     public void dropper(Position p,String n){
         if(!(this.present.contains(n))) {
             Classe concrete = Classe.creerClasse("Main." + n.replace(".java", ""));
-            ClasseApparence apparence = new ClasseApparence(concrete.getNomClasse(), concrete.getAttributs(), concrete.getConstructeurs(), concrete.getMethodes());
+            ClasseApparence apparence = new ClasseApparence(concrete);
             apparence.setLayoutX(p.X);
             apparence.setLayoutY(p.Y);
             EventStartDrag sd = new EventStartDrag(apparence, this.preview);
