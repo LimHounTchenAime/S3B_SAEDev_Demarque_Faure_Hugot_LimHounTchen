@@ -1,5 +1,6 @@
 package Vue;
 
+import Controller.EventClickDroit;
 import Controller.EventMouseFollow;
 import Controller.EventStartDrag;
 import Modele.*;
@@ -14,8 +15,11 @@ public class General extends Pane {
     Pointeur b;
     PreviewApparence preview;
     ArrayList<String> present;
+    public MenuClickDroit mcd;
 
     public General(){
+        this.mcd=new MenuClickDroit();
+        this.getChildren().addAll(this.mcd);
         this.present=new ArrayList<>();
         this.preview=new PreviewApparence();
         this.b=new Pointeur(new Position(400,300));

@@ -1,5 +1,6 @@
 package Controller;
 
+import Modele.MenuClickDroit;
 import Modele.Position;
 import Vue.General;
 import javafx.event.EventHandler;
@@ -11,21 +12,27 @@ import javafx.scene.input.MouseEvent;
 
 public class EventClickDroit implements EventHandler<MouseEvent> {
 
-    General gen;
+    MenuClickDroit mcd;
 
-    public EventClickDroit(General g){
-        this.gen=g;
+    public EventClickDroit(MenuClickDroit g){
+        this.mcd =g;
     }
 
     public void handle(MouseEvent mouseEvent) {
         String bouton=mouseEvent.getButton().toString();
         // si le bouton pressé est le clic droit
         if(bouton.equals("SECONDARY")){
+<<<<<<< HEAD
             // on récupère la position du curseur de la souris de l utilisateur
             Position pos=new Position(mouseEvent.getX(),mouseEvent.getY());
             //event active
+=======
+            this.mcd.setLayoutX(mouseEvent.getSceneX());
+            this.mcd.setLayoutY(mouseEvent.getSceneY());
+            this.mcd.inverser(true);
+>>>>>>> e3d37c226c974b39bc11f5e2c1ddd9b36b3413a8
         }else{
-            //event desactive
+            this.mcd.inverser(false);
         }
     }
 }
