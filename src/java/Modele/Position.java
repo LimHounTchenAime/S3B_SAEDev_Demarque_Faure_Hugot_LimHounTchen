@@ -1,5 +1,9 @@
 package Modele;
 
+/**
+ * Classe représentant une position dans un plan 2D
+ */
+
 public class Position {
 
     public double X,Y;

@@ -20,6 +20,7 @@ public class Classe {
         this.constructeurs=new ArrayList<>();
         this.methodes=new ArrayList<>();
     }
+
     protected String fileName;
     protected String typeClasse;
     protected String nomClasse;
@@ -30,16 +31,6 @@ public class Classe {
     protected Classe parents;
 
     protected List<Classe> interfaces;
-
-    /**
-     * TODO
-     * Constructeur ayant pour but de tester la méthode toString dans un programme
-     * principal.
-     * A remplacer par le constructeur utilisant un nom de fichier ayant les
-     * informations sur une classe
-     */
-
-    //public Classe(String nomFichier);
 
     public String getTypeClasse() {
         return this.typeClasse;
@@ -79,16 +70,22 @@ public class Classe {
      */
 
     public String toString() {
+        // Affichage du type de la classe
         String res="<<Java "+this.typeClasse+">>\n";
+        // Affichage de son nom et de son package
         res+=this.nomClasse + "\n";
         res+=this.nomPackage + "\n";
-        res+="________________\n";
+        res+="_________\n";
+        // Affichage de la liste de ses attributs
         res+=this.attributs.toString() + "\n";
-        res+="________________\n";
+        res+="_________\n";
+        // Affichage de la liste de ses constructeurs
         res+=this.constructeurs.toString() + "\n";
-        res+="________________\n";
+        res+="_________\n";
+        // Affichage de la liste de ses méthodes
         res+=this.methodes.toString() + "\n";
         res+="_________\n";
+        // Affichage de la liste de ses parents
         res+="Parents de " + this.nomClasse + "\n";
         res+=this.parents.toString() + "\n";
         return res;
@@ -102,18 +99,22 @@ public class Classe {
     public void determinerParent() throws ClassNotFoundException {
         Class c = Class.forName(this.nomPackage+"."+this.nomClasse);
         Class p = c.getSuperclass();
+        // si le parent existe
         if(p!=null){
+            // si le parent est une interface
             if(p.isInterface()){
                 this.parents = new Interface(p.getSimpleName(),p.getPackageName());
             } else {
+                // si le parent est une classe abstraite
                 if(p.toGenericString().contains("abstract")){
                     this.parents = new Abstract(p.getSimpleName(),p.getPackageName());
                 } else {
+                    // si le parent est une classe concrete
                     this.parents = new Classe(p.getSimpleName(),p.getPackageName());
                 }
             }
         }
-
+        // si c possède une ou plusieurs interfaces
         if(c.getInterfaces()!=null){
             for(Class i: c.getInterfaces()){
                 this.interfaces.add(new Interface(i.getSimpleName(),i.getPackageName()));
