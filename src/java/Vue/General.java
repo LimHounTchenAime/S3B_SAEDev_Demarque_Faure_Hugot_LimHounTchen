@@ -16,9 +16,11 @@ public class General extends Pane {
     PreviewApparence preview;
     ArrayList<String> present;
     public MenuClickDroit mcd;
+    ArrayList<ClasseApparence> contenu;
 
     public General(){
-        this.mcd=new MenuClickDroit();
+        this.contenu=new ArrayList<>();
+        this.mcd=new MenuClickDroit(this);
         this.getChildren().addAll(this.mcd);
         this.present=new ArrayList<>();
         this.preview=new PreviewApparence();
@@ -44,7 +46,14 @@ public class General extends Pane {
             apparence.setOnDragDetected(sd);
             apparence.setOnMouseReleased(sd);
             this.getChildren().addAll(apparence);
+            this.contenu.add(apparence);
             this.present.add(n);
+        }
+    }
+
+    public void activerMenu(){
+        for(int i=0;i<this.contenu.size();i++){
+            this.contenu.get(i).eteindre();
         }
     }
 

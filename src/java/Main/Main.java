@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    General general;
-    Scene scene;
+    private General general;
+    private Scene scene;
 
     public void start(Stage stage) {
         this.general=new General();

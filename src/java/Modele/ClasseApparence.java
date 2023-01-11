@@ -7,7 +7,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.util.List;
 
 /**
  * Classe s'occupant de l'apparence graphique d'une classe
@@ -18,8 +17,12 @@ public class ClasseApparence extends StackPane {
     Classe classic;
     Boolean suivre;
     int tailleX,tailleY;
+    boolean prot,pub,priv;
 
     public ClasseApparence(Classe c) {
+        this.prot=true;
+        this.pub=true;
+        this.priv=true;
         this.classic=c;
         this.suivre=false;
         this.generateFont();
@@ -33,29 +36,119 @@ public class ClasseApparence extends StackPane {
      */
     public void tailler(){
         int hauteur = 3;
-        int longueur = 0;
-        hauteur += this.classic.getAttributs().size();
-        hauteur += this.classic.getMethodes().size();
-        hauteur += this.classic.getConstructeurs().size();
+        int longueur;
         //---------------------
+        System.out.println("debut attri");
         longueur=this.classic.getNomClasse().length();
+        int test;
+        if(this.classic.getTypeClasse()!=null){
+            test= this.classic.getTypeClasse().length()+4;
+        }else{
+            test=8;
+        }
+        int test2= this.classic.getNomPackage().length()+1;
+        if(longueur<test){
+            longueur=test;
+        }
+        if(longueur<test2){
+            longueur=test2;
+        }
         for(int i=0;i<this.classic.getAttributs().size();i++){
             if(longueur<this.classic.getAttributs().get(i).length()){
-                longueur=this.classic.getAttributs().get(i).length();
+                switch (this.classic.getAttributs().get(i).split(" ")[0]) {
+                    case "public":
+                        if (this.pub) {
+                            longueur = this.classic.getAttributs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "protected":
+                        if (this.prot) {
+                            longueur = this.classic.getAttributs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "private":
+                        if (this.priv) {
+                            longueur = this.classic.getAttributs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                }
+            }
+            else{
+                hauteur+=1;
             }
         }
+        System.out.println("debut method");
         for(int i=0;i<this.classic.getMethodes().size();i++){
             if(longueur<this.classic.getMethodes().get(i).length()){
-                longueur=this.classic.getMethodes().get(i).length();
+                switch (this.classic.getMethodes().get(i).split(" ")[0]) {
+                    case "public":
+                        if (this.pub) {
+                            longueur = this.classic.getMethodes().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "protected":
+                        if (this.prot) {
+                            longueur = this.classic.getMethodes().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "private":
+                        if (this.priv) {
+                            longueur = this.classic.getMethodes().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                }
+            }
+            else{
+                hauteur+=1;
             }
         }
+        System.out.println("debut contru");
         for(int i=0;i<this.classic.getConstructeurs().size();i++){
             if(longueur<this.classic.getConstructeurs().get(i).length()){
-                longueur=this.classic.getConstructeurs().get(i).length();
+                switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
+                    case "public":
+                        if (this.pub) {
+                            longueur = this.classic.getConstructeurs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "protected":
+                        if (this.prot) {
+                            longueur = this.classic.getConstructeurs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                    case "private":
+                        if (this.priv) {
+                            longueur = this.classic.getConstructeurs().get(i).length();
+                            hauteur += 1;
+                            System.out.println(hauteur);
+                        }
+                        break;
+                }
+            }
+            else{
+                hauteur+=1;
             }
         }
+        System.out.println("fin");
         this.tailleX=longueur*6;
         this.tailleY=hauteur*18;
+        System.out.println(hauteur);
     }
 
 
@@ -85,29 +178,101 @@ public class ClasseApparence extends StackPane {
         Label sous=new Label(" "+this.classic.getNomPackage());
         Label attri=new Label();
         // affichage des attributs
-        for(int i=0;i<this.classic.getAttributs().size();i++){
-            if(i==0){
-                attri.setText(" "+this.classic.getAttributs().get(i));
-            }else{
-                attri.setText(attri.getText()+"\n "+this.classic.getAttributs().get(i));
+        for(int i=0;i<this.classic.getAttributs().size();i++) {
+            switch (this.classic.getAttributs().get(i).split(" ")[0]) {
+                case "public":
+                    if (this.pub) {
+                        if (attri.getText().equals("")) {
+                            attri.setText(" " + this.classic.getAttributs().get(i));
+                        } else {
+                            attri.setText(attri.getText() + "\n " + this.classic.getAttributs().get(i));
+                        }
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        if (attri.getText().equals("")) {
+                            attri.setText(" " + this.classic.getAttributs().get(i));
+                        } else {
+                            attri.setText(attri.getText() + "\n " + this.classic.getAttributs().get(i));
+                        }
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        if (attri.getText().equals("")) {
+                            attri.setText(" " + this.classic.getAttributs().get(i));
+                        } else {
+                            attri.setText(attri.getText() + "\n " + this.classic.getAttributs().get(i));
+                        }
+                    }
+                    break;
             }
         }
         // affichage des constructeurs
         Label constr=new Label();
         for(int i=0;i<this.classic.getConstructeurs().size();i++){
-            if(i==0){
-                constr.setText(" "+this.classic.getConstructeurs().get(i));
-            }else{
-                constr.setText(constr.getText()+"\n "+this.classic.getConstructeurs().get(i));
+            switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
+                case "public":
+                    if (this.pub) {
+                        if (constr.getText().equals("")) {
+                            constr.setText(" " + this.classic.getConstructeurs().get(i));
+                        } else {
+                            constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i));
+                        }
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        if (constr.getText().equals("")) {
+                            constr.setText(" " + this.classic.getConstructeurs().get(i));
+                        } else {
+                            constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i));
+                        }
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        if (constr.getText().equals("")) {
+                            constr.setText(" " + this.classic.getConstructeurs().get(i));
+                        } else {
+                            constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i));
+                        }
+                    }
+                    break;
             }
         }
         // affichage de ses methodes
         Label font=new Label();
         for(int i=0;i<this.classic.getMethodes().size();i++){
-            if(i==0){
-                font.setText(" "+this.classic.getMethodes().get(i));
-            }else{
-                font.setText(font.getText()+"\n "+this.classic.getMethodes().get(i));
+            switch (this.classic.getMethodes().get(i).split(" ")[0]) {
+                case "public":
+                    if (this.pub) {
+                        if (font.getText().equals("")) {
+                            font.setText(" " + this.classic.getMethodes().get(i));
+                        } else {
+                            font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i));
+                        }
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        if (font.getText().equals("")) {
+                            font.setText(" " + this.classic.getMethodes().get(i));
+                        } else {
+                            font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i));
+                        }
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        if (font.getText().equals("")) {
+                            font.setText(" " + this.classic.getMethodes().get(i));
+                        } else {
+                            font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i));
+                        }
+                    }
+                    break;
             }
         }
         Rectangle barre=new Rectangle(0,0,tailleX,2);
@@ -138,5 +303,14 @@ public class ClasseApparence extends StackPane {
 
     public int getTailleY(){
         return this.tailleY;
+    }
+
+    public void eteindre(){
+        this.prot=false;
+        this.pub=false;
+        this.priv=false;
+        this.getChildren().clear();
+        this.generateFont();
+        this.generateInside();
     }
 }
