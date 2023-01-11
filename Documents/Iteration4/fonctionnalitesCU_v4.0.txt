@@ -14,5 +14,14 @@ Aimé :
 Amaury :
 
 Benjamin :
+    -Optimisation de l'affichage.
+
+        - La première version de l'affichage d'une classe dans le javaFX n'était pas complet. Il manquait le nom du package et nom du type de classe.
+        Par la suite il y a encore le changement de taille en fonction du continue de la classe à réaliser pour l'iteration 5.
+
+    -Ajout du menu click droit.
+
+        - Désormais le bouton click droit une fois utiliser dans le vide permet de changer l'affichage du contenue des classes lors de l'affichage.
+        Le menu est entièrement développer ne nécéssitant que les fonctions pour cacher le contenu de d'une apparence de classe à ajouter.
 
 Solène :

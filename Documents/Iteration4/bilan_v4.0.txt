@@ -1,2 +1,4 @@
 Objectifs atteints :
 - Charger une classe externe à partir d'un nom de chemin. Ne fonctionne que pour des classes
+
+-Optimisation de l'affichage et ajout du menu click droit
