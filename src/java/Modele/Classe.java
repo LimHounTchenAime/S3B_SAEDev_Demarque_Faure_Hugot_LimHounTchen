@@ -24,6 +24,7 @@ public class Classe {
         this.attributs=new ArrayList<>();
         this.constructeurs=new ArrayList<>();
         this.methodes=new ArrayList<>();
+        this.interfaces = new ArrayList<>();
     }
 
     protected String fileName;

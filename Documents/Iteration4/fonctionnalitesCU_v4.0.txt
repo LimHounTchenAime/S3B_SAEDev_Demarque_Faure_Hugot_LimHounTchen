@@ -12,6 +12,9 @@ Aimé :
         empêche l'exécution de la méthode.
 
 Amaury :
+    - Ajout de la possibilité de créer des flèches entre deux classes.
+        - Pour le moment les flèches sont affichées sous le format PlantUML (Classe--|>AutreClasse)
+
 
 Benjamin :
     -Optimisation de l'affichage.

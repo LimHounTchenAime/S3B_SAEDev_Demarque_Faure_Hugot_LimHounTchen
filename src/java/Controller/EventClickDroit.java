@@ -22,15 +22,9 @@ public class EventClickDroit implements EventHandler<MouseEvent> {
         String bouton=mouseEvent.getButton().toString();
         // si le bouton pressé est le clic droit
         if(bouton.equals("SECONDARY")){
-<<<<<<< HEAD
             // on récupère la position du curseur de la souris de l utilisateur
             Position pos=new Position(mouseEvent.getX(),mouseEvent.getY());
             //event active
-=======
-            this.mcd.setLayoutX(mouseEvent.getSceneX());
-            this.mcd.setLayoutY(mouseEvent.getSceneY());
-            this.mcd.inverser(true);
->>>>>>> e3d37c226c974b39bc11f5e2c1ddd9b36b3413a8
         }else{
             this.mcd.inverser(false);
         }

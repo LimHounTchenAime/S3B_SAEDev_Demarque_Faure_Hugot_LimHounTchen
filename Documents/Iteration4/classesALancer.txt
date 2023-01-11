@@ -1,1 +1,2 @@
 src/test/Modele/TestClasseExterne
+src/test/Modele/FlecheTest
