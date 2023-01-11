@@ -25,3 +25,4 @@ Benjamin :
         Le menu est entièrement développer ne nécéssitant que les fonctions pour cacher le contenu de d'une apparence de classe à ajouter.
 
 Solène :
+    - Javadoc du projet
