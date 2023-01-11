@@ -21,6 +21,7 @@ public class Classe {
     public Classe(String name, String nomPackage) {
         this.nomClasse=name;
         this.nomPackage=nomPackage;
+        this.typeClasse="Class";
         this.attributs=new ArrayList<>();
         this.constructeurs=new ArrayList<>();
         this.methodes=new ArrayList<>();
