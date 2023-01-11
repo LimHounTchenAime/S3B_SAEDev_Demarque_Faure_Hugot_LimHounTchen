@@ -25,6 +25,7 @@ public class EventClickDroit implements EventHandler<MouseEvent> {
             // on récupère la position du curseur de la souris de l utilisateur
             Position pos=new Position(mouseEvent.getX(),mouseEvent.getY());
             //event active
+
         }else{
             this.mcd.inverser(false);
         }

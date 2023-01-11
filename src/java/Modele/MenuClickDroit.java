@@ -1,6 +1,7 @@
 package Modele;
 
 import Controller.EventSelectMenu;
+import Vue.General;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -15,8 +16,10 @@ public class MenuClickDroit extends VBox {
 
     String[] liste={"Package","Private","Protected","Public","Static","All","None"};
     ArrayList<CheckBox> packet;
+    General gen;
 
-    public MenuClickDroit(){
+    public MenuClickDroit(General g){
+        this.gen=g;
         this.packet=new ArrayList<>();
         String[] liste={"Package","Private","Protected","Public","Static","All","None"};
         for(int i=0;i<7;i++){
@@ -43,6 +46,7 @@ public class MenuClickDroit extends VBox {
     }
 
     public void activate(int choix){
+        this.gen.activerMenu();
         if(choix==6){
             for(int i=0;i<this.packet.size()-1;i++){
                 if(this.packet.get(i).isSelected()){
