@@ -406,6 +406,8 @@ public class ClasseApparence extends StackPane {
         return this.tailleY;
     }
 
+    public Classe getClassic(){return classic;}
+
     public void eteindre(int num,boolean status){
         switch(num){
             case 2:

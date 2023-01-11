@@ -14,7 +14,7 @@ public class Fleche extends Pane {
     private String type;
 
     public Fleche(){
-        
+
     }
 
     public static Fleche creerFleche(Classe f, Classe p){
