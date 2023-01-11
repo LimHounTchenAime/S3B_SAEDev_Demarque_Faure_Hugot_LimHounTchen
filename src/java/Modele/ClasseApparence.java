@@ -17,12 +17,14 @@ public class ClasseApparence extends StackPane {
     Classe classic;
     Boolean suivre;
     int tailleX,tailleY;
-    boolean prot,pub,priv;
+    boolean prot,pub,priv,pack,stat;
 
     public ClasseApparence(Classe c) {
         this.prot=true;
         this.pub=true;
         this.priv=true;
+        this.pack=true;
+        this.stat=true;
         this.classic=c;
         this.suivre=false;
         this.generateFont();
@@ -38,14 +40,14 @@ public class ClasseApparence extends StackPane {
         int hauteur = 3;
         int longueur;
         //---------------------
-        System.out.println("---");
-        System.out.println("debut attri");
+        System.out.println("---"+this.classic.getNomClasse()+"---");
         longueur=this.classic.getNomClasse().length()+1;
         int test;
+        int savestat;
         if(this.classic.getTypeClasse()!=null){
-            test= this.classic.getTypeClasse().length()+5;
+            test= this.classic.getTypeClasse().length()+11;
         }else{
-            test=10;
+            test=16;
         }
         int test2= this.classic.getNomPackage().length()+1;
         if(longueur<test){
@@ -54,110 +56,195 @@ public class ClasseApparence extends StackPane {
         if(longueur<test2){
             longueur=test2;
         }
+        savestat=hauteur;
+        if(this.classic.getAttributs().size()==0){
+            hauteur+=1;
+        }
         for(int i=0;i<this.classic.getAttributs().size();i++){
             if(longueur<this.classic.getAttributs().get(i).length()+1){
                 switch (this.classic.getAttributs().get(i).split(" ")[0]) {
                     case "public":
+                    default:
                         if (this.pub) {
-                            longueur = this.classic.getAttributs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getAttributs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getAttributs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getAttributs().get(i).length();
+                            }
                         }
                         break;
                     case "protected":
                         if (this.prot) {
-                            longueur = this.classic.getAttributs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getAttributs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getAttributs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getAttributs().get(i).length();
+                            }
                         }
                         break;
                     case "private":
                         if (this.priv) {
-                            longueur = this.classic.getAttributs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getAttributs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getAttributs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getAttributs().get(i).length();
+                            }
                         }
                         break;
                 }
             }
-            else{
-                hauteur+=1;
+            switch (this.classic.getAttributs().get(i).split(" ")[0]) {
+                default:
+                case "public":
+                    if (this.pub) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        hauteur += 1;
+                    }
+                    break;
             }
         }
-        System.out.println("debut method");
-        for(int i=0;i<this.classic.getMethodes().size();i++){
-            if(longueur<this.classic.getMethodes().get(i).length()+1){
-                switch (this.classic.getMethodes().get(i).split(" ")[0]) {
-                    case "public":
-                        if (this.pub) {
-                            longueur = this.classic.getMethodes().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
-                        }
-                        break;
-                    case "protected":
-                        if (this.prot) {
-                            longueur = this.classic.getMethodes().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
-                        }
-                        break;
-                    case "private":
-                        if (this.priv) {
-                            longueur = this.classic.getMethodes().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
-                        }
-                        break;
-                }
-            }
-            else{
-                hauteur+=1;
-            }
+        if(hauteur==savestat){
+            hauteur+=1;
         }
-        System.out.println("debut contru");
+        savestat=hauteur;
+        System.out.println("hauteur attribut : "+hauteur);
+        if(this.classic.getConstructeurs().size()==0){
+            hauteur+=1;
+        }
         for(int i=0;i<this.classic.getConstructeurs().size();i++){
             if(longueur<this.classic.getConstructeurs().get(i).length()+1){
                 switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
+                    default:
                     case "public":
                         if (this.pub) {
-                            longueur = this.classic.getConstructeurs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getConstructeurs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getConstructeurs().get(i).length();
+                            }
                         }
                         break;
                     case "protected":
                         if (this.prot) {
-                            longueur = this.classic.getConstructeurs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getConstructeurs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getConstructeurs().get(i).length();
+                            }
                         }
                         break;
                     case "private":
                         if (this.priv) {
-                            longueur = this.classic.getConstructeurs().get(i).length();
-                            hauteur += 1;
-                            System.out.println(hauteur);
+                            if(this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getConstructeurs().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getConstructeurs().get(i).length();
+                            }
                         }
                         break;
                 }
             }
-            else{
-                hauteur+=1;
+            switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
+                default:
+                case "public":
+                    if (this.pub) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        hauteur += 1;
+                    }
+                    break;
             }
         }
-        System.out.println("fin");
-        if(!this.prot){
+        if(hauteur==savestat){
             hauteur+=1;
         }
-        if(!this.pub){
+        savestat=hauteur;
+        System.out.println("hauteur constructeur : "+hauteur);
+        if(this.classic.getMethodes().size()==0){
             hauteur+=1;
         }
-        if(!this.priv){
+        for(int i=0;i<this.classic.getMethodes().size();i++){
+            if(longueur<this.classic.getMethodes().get(i).length()+1){
+                switch (this.classic.getMethodes().get(i).split(" ")[0]) {
+                    default:
+                    case "public":
+                        if (this.pub) {
+                            if(this.classic.getMethodes().get(i).split(" ")[1].equals("static")){
+                                if(this.stat){
+                                    longueur = this.classic.getMethodes().get(i).length();
+                                }
+                            }else {
+                                longueur = this.classic.getMethodes().get(i).length();
+                            }
+                        }
+                        break;
+                    case "protected":
+                        if (this.prot) {
+                            longueur = this.classic.getMethodes().get(i).length();
+                        }
+                        break;
+                    case "private":
+                        if (this.priv) {
+                            longueur = this.classic.getMethodes().get(i).length();
+                        }
+                        break;
+                }
+            }
+            switch (this.classic.getMethodes().get(i).split(" ")[0]) {
+                default:
+                case "public":
+                    if (this.pub) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "protected":
+                    if (this.prot) {
+                        hauteur += 1;
+                    }
+                    break;
+                case "private":
+                    if (this.priv) {
+                        hauteur += 1;
+                    }
+                    break;
+            }
+        }
+        if(hauteur==savestat){
             hauteur+=1;
         }
+        System.out.println("hauteur methode : "+hauteur);
         this.tailleX=longueur*6;
         this.tailleY=hauteur*18;
+        System.out.println("Taille finale de la classe");
         System.out.println(hauteur+" : "+longueur);
     }
 
@@ -184,12 +271,13 @@ public class ClasseApparence extends StackPane {
         debut.setAlignment(Pos.CENTER);
         // affichage de ses informations telles que son nom, son type et son package
         Label name=new Label(" "+this.classic.getNomClasse()+" ");
-        Label type=new Label(" <<"+this.classic.getTypeClasse()+">> ");
+        Label type=new Label(" << Java"+this.classic.getTypeClasse()+">> ");
         Label sous=new Label(" "+this.classic.getNomPackage()+" ");
         Label attri=new Label();
         // affichage des attributs
         for(int i=0;i<this.classic.getAttributs().size();i++) {
             switch (this.classic.getAttributs().get(i).split(" ")[0]) {
+                default:
                 case "public":
                     if (this.pub) {
                         if (attri.getText().equals("")) {
@@ -223,6 +311,7 @@ public class ClasseApparence extends StackPane {
         Label constr=new Label();
         for(int i=0;i<this.classic.getConstructeurs().size();i++){
             switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
+                default:
                 case "public":
                     if (this.pub) {
                         if (constr.getText().equals("")) {
@@ -256,6 +345,7 @@ public class ClasseApparence extends StackPane {
         Label font=new Label();
         for(int i=0;i<this.classic.getMethodes().size();i++){
             switch (this.classic.getMethodes().get(i).split(" ")[0]) {
+                default:
                 case "public":
                     if (this.pub) {
                         if (font.getText().equals("")) {
@@ -317,14 +407,20 @@ public class ClasseApparence extends StackPane {
 
     public void eteindre(int num,boolean status){
         switch(num){
-            case 0:
+            case 2:
                 this.prot=status;
                 break;
-            case 1:
+            case 3:
                 this.pub=status;
                 break;
-            case 2:
+            case 1:
                 this.priv=status;
+                break;
+            case 0:
+                this.pack=status;
+                break;
+            case 4:
+                this.stat=status;
                 break;
         }
         this.getChildren().clear();

@@ -46,7 +46,7 @@ public class EventDragDrop implements EventHandler<DragEvent> {
                 gen.update(db.getFiles().get(0).getName());
                 Position pos=new Position(event.getX(),event.getY());
                 // les fichiers sont déposés à la nouvelle position
-                gen.dropper(pos,db.getFiles().get(0).getName());
+                gen.dropper(pos,db.getFiles().get(0).getParentFile().getName(),db.getFiles().get(0).getName());
                 success = true;
             }
             event.setDropCompleted(success);

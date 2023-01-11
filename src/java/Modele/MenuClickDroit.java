@@ -74,8 +74,8 @@ public class MenuClickDroit extends VBox {
             this.packet.get(5).fire();
             this.packet.get(5).setDisable(true);
         }
-            this.packet.get(choix).setDisable(false);
-            this.packet.get(choix).fire();
-            this.packet.get(choix).setDisable(true);
+        this.packet.get(choix).setDisable(false);
+        this.packet.get(choix).fire();
+        this.packet.get(choix).setDisable(true);
     }
 }
