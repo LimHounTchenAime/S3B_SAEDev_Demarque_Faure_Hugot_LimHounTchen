@@ -46,7 +46,7 @@ public class MenuClickDroit extends VBox {
     }
 
     public void activate(int choix){
-        this.gen.activerMenu();
+        this.gen.activerMenu(choix,this.packet.get(choix).isSelected());
         if(choix==6){
             for(int i=0;i<this.packet.size()-1;i++){
                 if(this.packet.get(i).isSelected()){

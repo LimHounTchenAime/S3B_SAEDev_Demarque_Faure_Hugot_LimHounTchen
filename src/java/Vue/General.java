@@ -51,9 +51,9 @@ public class General extends Pane {
         }
     }
 
-    public void activerMenu(){
+    public void activerMenu(int num,boolean status){
         for(int i=0;i<this.contenu.size();i++){
-            this.contenu.get(i).eteindre();
+            this.contenu.get(i).eteindre(num,status);
         }
     }
 
