@@ -7,6 +7,7 @@ import Controller.EventStartDrag;
 import Modele.Classe;
 import Modele.ClasseApparence;
 import Modele.PreviewApparence;
+import Vue.Fleche;
 import Vue.General;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;

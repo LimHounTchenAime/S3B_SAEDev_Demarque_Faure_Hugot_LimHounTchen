@@ -19,6 +19,7 @@ public class ClasseApparence extends StackPane {
     int tailleX,tailleY;
     boolean prot,pub,priv;
 
+
     public ClasseApparence(Classe c) {
         this.prot=true;
         this.pub=true;

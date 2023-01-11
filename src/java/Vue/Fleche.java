@@ -1,15 +1,50 @@
 package Vue;
 
 import Modele.Classe;
+import Modele.ClasseApparence;
 import Modele.Position;
 import Modele.Sujet;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Line;
 
-public class Fleche implements Observateur {
-    Classe fils, parent;
-    Position p1,p2;
-    public Fleche(Classe f, Classe p){
-        this.fils = f;
-        this.parent = p;
+public class Fleche extends Pane {
+    private Classe fils, parent;
+    private boolean isAttribut, isParent, isInterface;
+    private String type;
+
+    public Fleche(){
+        
+    }
+
+    public static Fleche creerFleche(Classe f, Classe p){
+        Fleche f1 = null;
+        f1.fils = f;
+        f1.parent = p;
+
+        int a=0;
+        while(a<f1.fils.getAttributs().size() && !f1.isAttribut){
+            if(f1.fils.getAttributs().get(a).endsWith(f1.parent.getNomClasse())){
+                f1.isAttribut=true;
+            } else {
+                a++;
+            }
+        }
+
+        f1.isParent = false;
+        if(f1.fils.getParents().getNomClasse().equals(f1.parent.getNomClasse())){
+            f1.isParent = true;
+        }
+
+        int i = 0;
+        while(i<f1.fils.getInterfaces().size() && !f1.isInterface){
+            if(f1.fils.getInterfaces().get(i).getNomClasse().equals(f1.parent.getNomClasse())){
+                f1.isInterface = true;
+            } else {
+                i++;
+            }
+        }
+        return f1;
     }
 
     /**
@@ -19,40 +54,24 @@ public class Fleche implements Observateur {
     public String toString(){
         String res = "";
 
-        boolean isAttribut = false;
-        int a=0;
-        while(a<this.fils.getAttributs().size() && !isAttribut){
-            if(this.fils.getAttributs().get(a).endsWith(this.parent.getNomClasse())){
-                isAttribut=true;
-            } else {
-                a++;
-            }
-        }
-        if(isAttribut){
+        if(this.isAttribut){
             res += this.fils.getNomClasse() + "-->" + this.parent.getNomClasse()+"\n";
         }
 
-        if(this.fils.getParents().getNomClasse().equals(this.parent.getNomClasse())){
+        if(this.isParent){
             res += this.fils.getNomClasse() + "--|>" + this.parent.getNomClasse() + "\n";
         }
 
-        boolean isImplement = false;
-        int i = 0;
-        while(i<this.fils.getInterfaces().size() && !isImplement){
-            if(this.fils.getInterfaces().get(i).getNomClasse().equals(this.parent.getNomClasse())){
-                isImplement = true;
-            } else {
-                i++;
-            }
-        }
-        if(isImplement){
+        if(this.isInterface){
             res += this.fils.getNomClasse() + "..|>" + this.parent.getNomClasse() + "\n";
         }
+        
         return res;
     }
 
-    @Override
-    public void actualiser(Sujet s) {
+    public String getType(){return type;}
+    public Boolean getIsAttribut(){return isAttribut;}
+    public Boolean getIsInterface(){return isInterface;}
+    public Boolean getIsParent(){return isParent;}
 
-    }
 }
