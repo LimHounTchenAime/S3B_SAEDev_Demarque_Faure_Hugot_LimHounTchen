@@ -1,5 +1,6 @@
 Aimé :
     - Ajout fonctionnalité permettant de charger une classe en dehors des dossiers du projet
+
         - L'idée était d'utiliser URLClassLoader permettant de créer un objet ClassLoader à partir d'un objet URL créé à partir
         d'un chemin de fichier et de créer un objet Class avec la méthode loadClass(String) de ClassLoader.
         Le problème était que le paramètre à ajouter devait être un nom binaire(nomPackage.nomClasse) et qu'il fallait que
@@ -13,5 +14,15 @@ Aimé :
 Amaury :
 
 Benjamin :
+    -Optimisation de l'affichage.
+
+        - La première version de l'affichage d'une classe dans le javaFX n'était pas complet. Il manquait le nom du package et nom du type de classe.
+        Par la suite il y a encore le changement de taille en fonction du continue de la classe à réaliser pour l'iteration 5.
+
+    -Ajout du menu click droit.
+
+        - Désormais le bouton click droit une fois utiliser dans le vide permet de changer l'affichage du contenue des classes lors de l'affichage.
+        Le menu est entièrement développer ne nécéssitant que les fonctions pour cacher le contenu de d'une apparence de classe à ajouter.
 
 Solène :
+    - Javadoc du projet

@@ -1,0 +1,27 @@
+Classe :
+    - Ajout filename:String correspondant au nom du fichier utilisé pour créer la classe
+    - Modification parents:String et ajout interfaces:List<Classe>, on différencie la classe héritée des interfaces et
+    on retrouve ainsi le patron Décorateur et Composite
+    - Suppression des attributs en lien avec la partie graphique, utilisation dans des classes dédiées
+
+    -Modification creerClasse(String):Classe qui possède maintenant appelle la méthode determinerParent permettant d'initialiser
+    les attributs parents et interfaces de l'objet retourné
+
+Abstraite, Concrete et Interface :
+    - Modifications Abstraite(String,String), Concrete(String,String) et Interface(String,String) qui initialisent typeClasse
+    respectivement
+
+    - Suppression creerClasse(String):Classe qui ne change pas en fonction des types de classes
+
+ControlleurDragDrop =renommé=> EventDragDrop
+    - Modifications du nom du constructeur et de handle(ActionEvent) en handle(DragEvent)
+
+Fleche :
+    - Ajout toString():String retournant le une chaîne correspondant au format plantUML des classes
+    - Modification Fleche() en Fleche(Classe,Classe) qui relie désormais 2 classes
+
+Suppression de Implementation, Heritage, Association
+
+Ajout de EventStartDrag, EventMouseFollow, EventSelectMenu, EventClickDroit,
+        ClasseApparence, PreviewApparence, MenuClickDroit, Position, Pointeur,
+        General
