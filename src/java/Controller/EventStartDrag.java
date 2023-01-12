@@ -2,6 +2,7 @@ package Controller;
 
 import Modele.ClasseApparence;
 import Modele.PreviewApparence;
+import Vue.General;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -11,13 +12,15 @@ import javafx.scene.input.MouseEvent;
 
 public class EventStartDrag implements EventHandler<MouseEvent> {
 
+    General gen;
     ClasseApparence app;
     PreviewApparence pre;
     boolean actif;
 
-    public EventStartDrag(ClasseApparence a,PreviewApparence p){
+    public EventStartDrag(ClasseApparence a,PreviewApparence p,General g){
         this.actif=false;
         this.app=a;
+        this.gen=g;
         this.pre=p;
     }
 
@@ -41,6 +44,7 @@ public class EventStartDrag implements EventHandler<MouseEvent> {
                     this.pre.toFront();
                     this.pre.activerSuivi(0, 0, false);
                     this.app.changerMod(this.pre.getLayoutX() + 10, this.pre.getLayoutY() + 10);
+                    this.gen.Updatedepot(this.app.getNom());
                     // l'action 'glisser' n'est pas en cours
                     this.actif = false;
                 }
