@@ -41,8 +41,6 @@ public class General extends Pane {
     }
 
     public void dropper(Position p,String m,String n){
-        System.out.println(m);
-        System.out.println(m+"." + n.replace(".java", ""));
         if(!(this.present.contains(n))) {
             Classe concrete = Classe.creerClasse(m+"." + n.replace(".java", ""));
             ClasseApparence apparence = new ClasseApparence(concrete);

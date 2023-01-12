@@ -51,7 +51,6 @@ public class ClasseApparence extends StackPane {
         }
         int longueur;
         //---------------------
-        System.out.println("---" + this.classic.getNomClasse() + "---");
         longueur = this.classic.getNomClasse().length() + 1;
         int test;
         int savestat;
@@ -153,7 +152,6 @@ public class ClasseApparence extends StackPane {
             hauteur += 1;
         }
         savestat = hauteur;
-        System.out.println("hauteur attribut : " + hauteur);
         if (this.classic.getConstructeurs().size() == 0) {
             hauteur += 1;
         }
@@ -237,7 +235,6 @@ public class ClasseApparence extends StackPane {
             hauteur += 1;
         }
         savestat = hauteur;
-        System.out.println("hauteur constructeur : " + hauteur);
         if (this.classic.getMethodes().size() == 0) {
             hauteur += 1;
         }
@@ -308,11 +305,8 @@ public class ClasseApparence extends StackPane {
         if (hauteur == savestat) {
             hauteur += 1;
         }
-        System.out.println("hauteur methode : " + hauteur);
         this.tailleX = longueur * 6;
         this.tailleY = hauteur * 18;
-        System.out.println("Taille finale de la classe");
-        System.out.println(hauteur + " : " + longueur);
     }
 
 
@@ -576,7 +570,6 @@ public class ClasseApparence extends StackPane {
     public Classe getClassic(){return classic;}
 
     public void eteindre(int num, boolean status) {
-        System.out.println(num + " : stat = " + status);
         switch (num) {
             case 2:
                 this.prot = status;
