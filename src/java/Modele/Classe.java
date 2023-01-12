@@ -148,7 +148,7 @@ public class Classe {
                 classe = Class.forName(cheminClasse);
             else{
 
-                    //fonctionnalite permettant de lire une classe externe au projet
+                //fonctionnalite permettant de lire une classe externe au projet
 
                 String className= Path.of(cheminClasse).getFileName().toString().replace(".class", "");
 /*
@@ -156,7 +156,9 @@ public class Classe {
                 BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("src/java/ClassesChargees/"+className+".java"));
                 bufferedWriter.write("package ClassesChargees;\n");
                 String line="";
+                // tant que le fichier lu n'est pas vide
                 while((line=bufferedReader.readLine())!=null){
+                    // on récupère le package, s'il existe
                     if(!line.contains("package"))
                         bufferedWriter.write(line+"\n");
                 }
@@ -180,21 +182,27 @@ public class Classe {
             Method[] methodes = classe.getDeclaredMethods();
             String parametres;
 
+            // si il s'agit d'une interface
             if (classe.isInterface())
                 res = new Interface(classe.getSimpleName(),classe.getPackageName());
             else
+                // si il s'agit d'une classe abstraite
                 if (classe.toGenericString().contains("abstract"))
                     res = new Abstract(classe.getSimpleName(),classe.getPackageName());
                  else {
+                     // sinon si il s'agit d'une classe concrète
                     res = new Classe(classe.getSimpleName(),classe.getPackageName());
                 }
 
+                 // On récupère le nom de la classe
                 res.nomClasse = classe.getName();
                 while (res.nomClasse.contains("."))
                     res.nomClasse = res.nomClasse.substring(res.nomClasse.indexOf(".")).substring(1);
 
+                // On récupère le package de la classe
                 res.nomPackage = classe.getPackageName();
 
+                // On récupère les attributs de la classe
                 String attribut = "";
                 for (Field field : attributs) {
                     attribut = Modifier.toString(field.getModifiers()) + " " + field.getName() + ":" + field.getType();
@@ -224,6 +232,7 @@ public class Classe {
                     res.constructeurs.add(constructeur + ")");
                 }
 
+                // On récupère les méthodes et les paramètres
                 String methode;
                 for (Method method : methodes) {
                     String nomMethode = method.getName() + "(";
@@ -249,6 +258,7 @@ public class Classe {
                     res.methodes.add(methode + "):" + returnType);
                 }
 
+                // On récupère les parents de la classe
                 Class p = classe.getSuperclass();
                 if (p != null) {
                     if (p.toGenericString().contains("abstract")) {
@@ -258,6 +268,7 @@ public class Classe {
                     }
                 }
 
+                // On récupère l'interface de la classe si elle existe
                 if (classe.getInterfaces() != null) {
                     for (Class i : classe.getInterfaces()) {
                         res.interfaces.add(new Interface(i.getSimpleName(),i.getPackageName()));
@@ -265,9 +276,11 @@ public class Classe {
                 }
 
             }
+        // si on ne trouve pas la classe
         catch (ClassNotFoundException classNotFoundException){
             System.out.println("Classe introuvable, veuillez le copier coller dans le package src/java/ClassesChargees");
         }
+        // si on ne trouve pas le fichier
         catch (IOException ioException){
             System.out.println("Fichier introuvable");
         }
@@ -278,6 +291,7 @@ public class Classe {
 
          */
 
+        // on trie les attributs, méthodes et constructeurs
         res.attributs.sort(Comparator.naturalOrder());
         res.constructeurs.sort(Comparator.naturalOrder());
         res.methodes.sort(Comparator.naturalOrder());
