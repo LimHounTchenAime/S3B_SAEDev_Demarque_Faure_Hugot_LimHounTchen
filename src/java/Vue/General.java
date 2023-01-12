@@ -69,7 +69,7 @@ public class General extends Pane {
 //            }
 
             if(concrete.getParents()!=null){
-                Classe parent = Classe.creerClasse(concrete.getParents().getNomPackage()+concrete.getParents().getNomClasse());
+                Classe parent = Classe.creerClasse(concrete.getParents().getNomPackage()+"."+concrete.getParents().getNomClasse());
                 ClasseApparence cap = new ClasseApparence(parent);
                 if(this.contenu.contains(cap)){
                     double cax = apparence.getLayoutX()+apparence.getTailleX()/2;
