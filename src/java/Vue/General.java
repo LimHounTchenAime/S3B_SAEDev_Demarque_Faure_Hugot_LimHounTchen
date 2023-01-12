@@ -44,8 +44,6 @@ public class General extends Pane {
     }
 
     public void dropper(Position p,String m,String n) {
-        System.out.println(m);
-        System.out.println(m + "." + n.replace(".java", ""));
         if (!(this.present.contains(n))) {
             Classe concrete = Classe.creerClasse(m + "." + n.replace(".java", ""));
             ClasseApparence apparence = new ClasseApparence(concrete);
@@ -70,18 +68,9 @@ public class General extends Pane {
 //                    this.getChildren().add(line);
 //                } else { a++; }
 //            }
-
-            if (concrete.getParents() != null) {
+            System.out.println(concrete.getParents().getNomClasse());
+            if (!concrete.getParents().getNomClasse().equals("Object")) {
                 Classe parent = Classe.creerClasse(concrete.getParents().getNomPackage() + "." + concrete.getParents().getNomClasse());
-                ClasseApparence cap = new ClasseApparence(parent);
-                if (this.contenu.contains(cap)) {
-                    double cax = apparence.getLayoutX() + apparence.getTailleX() / 2;
-                    double cay = apparence.getLayoutY() + apparence.getTailleY() / 2;
-                    double capx = cap.getLayoutX() + (cap.getTailleX() / 2);
-                    double capy = cap.getLayoutY() + (cap.getTailleY() / 2);
-                    Line line = new Line(cax, cay, capx, capy);
-                    this.getChildren().add(line);
-                }
 
                 ClasseApparence classeApparenceParent = null;
                 int a = 0;
@@ -98,12 +87,26 @@ public class General extends Pane {
                 }
 
 
+
                 this.getChildren().addAll(apparence);
                 this.contenu.add(apparence);
                 this.present.add(n);
+            } else {
+                System.out.println("UWU");
+                ClasseApparence fils = null;
+                Fleche f = null;
+                int x = 0;
+                while (x < this.contenu.size()) {
+                    if (this.contenu.get(x).getClassic().getParents().getNomClasse().equals(concrete.getNomClasse())) {
+                        fils = this.contenu.get(x);
+                        f = Fleche.creerFleche(fils, apparence);
+                        this.contenuFleche.add(f);
+                        this.getChildren().add(f);
+                        f.toBack();
+                    }
+                    x++;
+                }
             }
-        } else {
-            Classe fils = null;
         }
     }
     public void activerMenu(int num,boolean status){

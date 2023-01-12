@@ -160,7 +160,6 @@ public class ClasseApparence extends StackPane {
             hauteur += 1;
         }
         savestat = hauteur;
-        System.out.println("hauteur attribut : " + hauteur);
 
         // s'il n'y a pas de constructeur à gérer
         if (this.classic.getConstructeurs().size() == 0) {
@@ -254,7 +253,6 @@ public class ClasseApparence extends StackPane {
         }
         savestat = hauteur;
 
-        System.out.println("hauteur constructeur : " + hauteur);
         // s'il n'y a pas de méthodes à gérer
 
         if (this.classic.getMethodes().size() == 0) {
