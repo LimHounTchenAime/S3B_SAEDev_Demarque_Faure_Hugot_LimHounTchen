@@ -41,62 +41,28 @@ public class General extends Pane {
     }
 
     public void dropper(Position p,String m,String n){
-        System.out.println(m);
-        System.out.println(m+"." + n.replace(".java", ""));
         if(!(this.present.contains(n))) {
             Classe concrete = Classe.creerClasse(m+"." + n.replace(".java", ""));
             ClasseApparence apparence = new ClasseApparence(concrete);
             apparence.setLayoutX(p.X);
             apparence.setLayoutY(p.Y);
-            EventStartDrag sd = new EventStartDrag(apparence, this.preview);
+            EventStartDrag sd = new EventStartDrag(apparence, this.preview,this);
             apparence.setOnDragDetected(sd);
             apparence.setOnMouseReleased(sd);
 
-//            Fleche flecheParent = Fleche.creerFleche(concrete,concrete.getParents());
-//            ClasseApparence classeApparenceParent = null;
-//            Line line = null;
-//            int a=0;
-//            while(line==null && a<this.contenu.size()){
-//                if(this.contenu.get(a).getClassic().getNomClasse() == concrete.getParents().getNomClasse()){
-////                    classeApparenceParent = this.contenu.get(a);
-//                    double cax = apparence.getLayoutX()+apparence.getTailleX()/2;
-//                    double cay = apparence.getLayoutY()+apparence.getTailleY()/2;
-//                    double capx = this.contenu.get(a).getLayoutX()+(this.contenu.get(a).getTailleX()/2);
-//                    double capy = this.contenu.get(a).getLayoutY()+(this.contenu.get(a).getTailleY()/2);
-//                    line = new Line(cax, cay, capx, capy);
-//                    this.getChildren().add(line);
-//                } else { a++; }
-//            }
 
-            if(concrete.getParents()!=null){
-                Classe parent = Classe.creerClasse(concrete.getParents().getNomPackage()+"."+concrete.getParents().getNomClasse());
-                ClasseApparence cap = new ClasseApparence(parent);
-                if(this.contenu.contains(cap)){
-                    double cax = apparence.getLayoutX()+apparence.getTailleX()/2;
-                    double cay = apparence.getLayoutY()+apparence.getTailleY()/2;
-                    double capx = cap.getLayoutX()+(cap.getTailleX()/2);
-                    double capy = cap.getLayoutY()+(cap.getTailleY()/2);
-                    Line line = new Line(cax, cay, capx, capy);
-                    this.getChildren().add(line);
-                }
-
+            ClasseApparence classeApparenceParent = null;
+            Line line = null;
+            int a=0;
+            while(line==null && a<this.contenu.size()){
+                classeApparenceParent = this.contenu.get(a);
+                if(classeApparenceParent.getClassic().getNomClasse().equals(concrete.getParents().getNomClasse())){
+                    Fleche flecheParent = Fleche.creerFleche(apparence, classeApparenceParent);
+                    this.getChildren().add(flecheParent);
+                    flecheParent.toBack();
+                    this.contenuFleche.add(flecheParent);
+                } else { a++; }
             }
-
-//            if(classeApparenceParent!=null){
-//                double cax = apparence.getLayoutX()+apparence.getTailleX()/2;
-//                double cay = apparence.getLayoutY()+apparence.getTailleY()/2;
-//                double capx = classeApparenceParent.getLayoutX()+(classeApparenceParent.getTailleX()/2);
-//                double capy = classeApparenceParent.getLayoutY()+(classeApparenceParent.getTailleY()/2);
-//                Line line = new Line(cax, cay, capx, capy);
-//                Line line = new Line(50,50,100,50);
-//                Polygon triangle = new Polygon(40,40 ,45,55, 55,45);
-//                triangle.setStroke(Color.BLACK);
-//                triangle.setFill(Color.WHITE);
-//                flecheParent.getChildren().addAll(line);
-
-
-//                this.getChildren().add(line);
-//            }
 
             this.getChildren().addAll(apparence);
             this.contenu.add(apparence);
@@ -121,4 +87,52 @@ public class General extends Pane {
     public void updatePreview(){
         this.preview.suivre();
     }
+
+    public void Updatedepot(String nom){
+        if(!this.contenu.isEmpty() && !this.contenuFleche.isEmpty()){
+            Fleche f = null;
+            int a = 0;
+            System.out.println("oui");
+            while(a<this.contenuFleche.size() && f == null){
+                if(this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom)){
+                    f = this.contenuFleche.get(a);
+                } else {
+                    a++;
+                }
+            }
+
+            System.out.println("oui");
+            ClasseApparence cf = null;
+            ClasseApparence cp = null;
+
+            int b = 0;
+
+            while(b<this.contenu.size() && cf == null){
+                String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
+                if(nomCaf.equals(f.getClasseFils().getNomClasse())){
+                    cf = this.contenu.get(b);
+                } else {
+                    b++;
+                }
+            }
+
+            System.out.println("oui");
+            int i = 0;
+            while(i<this.contenu.size() && cp == null){
+                String nomCap=this.contenu.get(i).getClassic().getNomClasse();
+                if(nomCap.equals(f.getClasseParent().getNomClasse())){
+                    cp = this.contenu.get(i);
+                } else {
+                    i++;
+                }
+            }
+
+            System.out.println("oui");
+            f.calculerPosition(cf,cp);
+            System.out.println("oui");
+            this.contenuFleche.set(a,f);
+        }
+
+    }
 }
+
