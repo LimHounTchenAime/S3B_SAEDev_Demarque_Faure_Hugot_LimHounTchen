@@ -7,6 +7,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.Random;
+
 
 /**
  * Classe s'occupant de l'apparence graphique d'une classe
@@ -18,6 +20,7 @@ public class ClasseApparence extends StackPane {
     Boolean suivre;
     int tailleX, tailleY;
     boolean prot, pub, priv, pack, stat;
+    int red,green,blue;
 
 
     public ClasseApparence(Classe c) {
@@ -28,6 +31,10 @@ public class ClasseApparence extends StackPane {
         this.stat = true;
         this.classic = c;
         this.suivre = false;
+        Random r = new Random();
+        this.red=r.nextInt(255-150) + 150;
+        this.green=r.nextInt(255-150) + 150;
+        this.blue=r.nextInt(255-150) + 150;
         this.generateFont();
         this.generateInside();
     }
@@ -39,6 +46,9 @@ public class ClasseApparence extends StackPane {
      */
     public void tailler() {
         int hauteur = 3;
+        if(!this.pack){
+            hauteur-=1;
+        }
         int longueur;
         //---------------------
         System.out.println("---" + this.classic.getNomClasse() + "---");
@@ -50,12 +60,14 @@ public class ClasseApparence extends StackPane {
         } else {
             test = 16;
         }
-        int test2 = this.classic.getNomPackage().length() + 1;
+        if(this.pack) {
+            int test2 = this.classic.getNomPackage().length() + 1;
+            if (longueur < test2) {
+                longueur = test2;
+            }
+        }
         if (longueur < test) {
             longueur = test;
-        }
-        if (longueur < test2) {
-            longueur = test2;
         }
         savestat = hauteur;
         if (this.classic.getAttributs().size() == 0) {
@@ -310,10 +322,18 @@ public class ClasseApparence extends StackPane {
     public void generateFont() {
         this.tailler();
         Rectangle font = new Rectangle(0, 0, tailleX, tailleY);
-        font.setFill(Color.rgb(255, 255, 151));
+        font.setFill(Color.rgb(this.red, this.green, this.blue));
         font.setStroke(Color.rgb(0, 0, 0));
         font.setStrokeWidth(2);
         this.getChildren().addAll(font);
+    }
+
+
+    /**
+     * Methode permettant de récupéré le nom de la classe
+     */
+    public String getNom(){
+        return this.classic.getNomClasse();
     }
 
 
@@ -418,40 +438,40 @@ public class ClasseApparence extends StackPane {
                     break;
                 case "protected":
                     if (this.prot) {
-                            if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
-                                if (this.stat) {
-                                    if (constr.getText().equals("")) {
-                                        constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
-                                    } else {
-                                        constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
-                                    }
-                                }
-                            }else{
+                        if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
+                            if (this.stat) {
                                 if (constr.getText().equals("")) {
                                     constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
                                 } else {
                                     constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
                                 }
                             }
+                        }else{
+                            if (constr.getText().equals("")) {
+                                constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
+                            } else {
+                                constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
+                            }
+                        }
                     }
                     break;
                 case "private":
                     if (this.priv) {
-                            if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
-                                if (this.stat) {
-                                    if (constr.getText().equals("")) {
-                                        constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
-                                    } else {
-                                        constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
-                                    }
-                                }
-                            }else{
+                        if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
+                            if (this.stat) {
                                 if (constr.getText().equals("")) {
                                     constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
                                 } else {
                                     constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
                                 }
                             }
+                        }else{
+                            if (constr.getText().equals("")) {
+                                constr.setText(" " + this.classic.getConstructeurs().get(i) + " ");
+                            } else {
+                                constr.setText(constr.getText() + "\n " + this.classic.getConstructeurs().get(i) + " ");
+                            }
+                        }
                     }
                     break;
             }
@@ -463,22 +483,22 @@ public class ClasseApparence extends StackPane {
                 default:
                 case "public":
                     if (this.pub) {
-                            if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {
-                                if (this.stat) {
-                                    if (font.getText().equals("")) {
-                                        font.setText(" " + this.classic.getMethodes().get(i) + " ");
-                                    } else {
-                                        font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i) + " ");
-                                    }
-                                }
-                            }else{
+                        if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {
+                            if (this.stat) {
                                 if (font.getText().equals("")) {
                                     font.setText(" " + this.classic.getMethodes().get(i) + " ");
                                 } else {
                                     font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i) + " ");
                                 }
                             }
+                        }else{
+                            if (font.getText().equals("")) {
+                                font.setText(" " + this.classic.getMethodes().get(i) + " ");
+                            } else {
+                                font.setText(font.getText() + "\n " + this.classic.getMethodes().get(i) + " ");
+                            }
                         }
+                    }
                     break;
                 case "protected":
                     if (this.prot) {
@@ -526,7 +546,10 @@ public class ClasseApparence extends StackPane {
         barre2.setFill(Color.rgb(0, 0, 0));
         Rectangle barre3 = new Rectangle(0, 0, tailleX, 2);
         barre3.setFill(Color.rgb(0, 0, 0));
-        debut.getChildren().addAll(type, name, sous);
+        debut.getChildren().addAll(type, name);
+        if(this.pack){
+            debut.getChildren().addAll(sous);
+        }
         pack.getChildren().addAll(debut, barre, attri, barre2, constr, barre3, font);
         this.getChildren().addAll(pack);
     }
@@ -553,6 +576,7 @@ public class ClasseApparence extends StackPane {
     public Classe getClassic(){return classic;}
 
     public void eteindre(int num, boolean status) {
+        System.out.println(num + " : stat = " + status);
         switch (num) {
             case 2:
                 this.prot = status;
@@ -568,6 +592,20 @@ public class ClasseApparence extends StackPane {
                 break;
             case 4:
                 this.stat = status;
+                break;
+            case 5:
+                this.prot = false;
+                this.pub = false;
+                this.priv = false;
+                this.pack = false;
+                this.stat = false;
+                break;
+            case 6:
+                this.prot = true;
+                this.pub = true;
+                this.priv = true;
+                this.pack = true;
+                this.stat = true;
                 break;
         }
         this.getChildren().clear();

@@ -48,7 +48,7 @@ public class General extends Pane {
             ClasseApparence apparence = new ClasseApparence(concrete);
             apparence.setLayoutX(p.X);
             apparence.setLayoutY(p.Y);
-            EventStartDrag sd = new EventStartDrag(apparence, this.preview);
+            EventStartDrag sd = new EventStartDrag(apparence, this.preview,this);
             apparence.setOnDragDetected(sd);
             apparence.setOnMouseReleased(sd);
 
@@ -120,5 +120,9 @@ public class General extends Pane {
 
     public void updatePreview(){
         this.preview.suivre();
+    }
+
+    public void Updatedepot(String nom){
+
     }
 }
