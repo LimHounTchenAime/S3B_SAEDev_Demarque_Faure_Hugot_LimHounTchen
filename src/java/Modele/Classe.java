@@ -1,10 +1,13 @@
 package Modele;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -147,8 +150,8 @@ public class Classe {
 
                     //fonctionnalite permettant de lire une classe externe au projet
 
-                String className= Path.of(cheminClasse).getFileName().toString().replace(".java", "");
-
+                String className= Path.of(cheminClasse).getFileName().toString().replace(".class", "");
+/*
                 BufferedReader bufferedReader=new BufferedReader(new FileReader(cheminClasse));
                 BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("src/java/ClassesChargees/"+className+".java"));
                 bufferedWriter.write("package ClassesChargees;\n");
@@ -161,11 +164,14 @@ public class Classe {
                 bufferedWriter.close();
                 classe=Class.forName("ClassesChargees."+className);
 
-                /*
+                */
+
                 URL classUrl=new File(cheminClasse).toURI().toURL();
+                System.out.println(classUrl);
                 ClassLoader classLoader=new URLClassLoader(new URL[]{classUrl});
-                classe=classLoader.loadClass("test.Classe1");
-                 */
+                System.out.println(classLoader.getResource(""));
+                classe=classLoader.loadClass("tmp.test.Classe1");
+
             }
 
             System.out.println();
@@ -260,7 +266,7 @@ public class Classe {
 
             }
         catch (ClassNotFoundException classNotFoundException){
-            System.out.println("Classe introuvable");
+            System.out.println("Classe introuvable, veuillez le copier coller dans le package src/java/ClassesChargees");
         }
         catch (IOException ioException){
             System.out.println("Fichier introuvable");

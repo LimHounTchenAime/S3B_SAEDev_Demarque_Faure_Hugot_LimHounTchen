@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestClasseExterne {
     @Test
     public void test(){
-        Classe concrete=Classe.creerClasse("C:\\Users\\Elève\\Desktop\\Classe1.java");
+        Classe concrete=Classe.creerClasse("C:\\Users\\aimel\\Desktop\\tmp\\test\\Classe1.java");
         System.out.println(concrete.toString());
         assertEquals(2, concrete.getAttributs().size());
         assertEquals("<<Java Classe>>\n" +

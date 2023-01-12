@@ -1,0 +1,4 @@
+General :
+    - Ajout imprimerImage() permettant de faire une capture d'écran
+
+Ajout EventCaptureEcran gérant les entrées clavier pour la capture d'écran

@@ -2,7 +2,6 @@ package Controller;
 
 import Modele.MenuClickDroit;
 import Modele.Position;
-import Vue.General;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

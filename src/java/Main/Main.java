@@ -1,26 +1,22 @@
 package Main;
 
+import Controller.EventCaptureEcran;
 import Controller.EventClickDroit;
 import Controller.EventDragDrop;
 import Controller.EventMouseFollow;
-import Controller.EventStartDrag;
-import Modele.Classe;
-import Modele.ClasseApparence;
-import Modele.PreviewApparence;
-import Vue.Fleche;
 import Vue.General;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private General general;
-    private Scene scene;
+    private static General general;
+    private static Scene scene;
 
     public void start(Stage stage) {
+
         this.general=new General();
         EventClickDroit ecd=new EventClickDroit(this.general.mcd);
         this.general.setOnMouseClicked(ecd);
@@ -30,9 +26,15 @@ public class Main extends Application {
         EventMouseFollow mouse=new EventMouseFollow(this.general.getPreview());
         this.scene=new Scene(this.general ,800,600);
         this.scene.setOnMouseDragged(mouse);
+        EventCaptureEcran eventCaptureEcran= new EventCaptureEcran(this.general);
+        this.scene.setOnKeyPressed(eventCaptureEcran);
         stage.setScene(this.scene);
         stage.show();
         start();
+    }
+
+    public static Scene getScene() {
+        return scene;
     }
 
     public void start() {
@@ -47,6 +49,10 @@ public class Main extends Application {
 
     public void update(){
         this.general.updatePreview();
+    }
+
+    public static General getGeneral() {
+        return general;
     }
 
     public static void main(String[] args) {

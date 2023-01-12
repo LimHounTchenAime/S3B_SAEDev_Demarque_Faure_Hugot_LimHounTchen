@@ -1,0 +1,3 @@
+Objectifs atteints :
+
+- Fonctionnalité permettant de prendre une capture d'écran de l'interface graphique avec le boutton +

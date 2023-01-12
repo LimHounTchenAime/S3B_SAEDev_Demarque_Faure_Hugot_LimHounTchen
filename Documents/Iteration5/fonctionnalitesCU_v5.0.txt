@@ -1,0 +1,25 @@
+Aimé :
+    - Ajout fonctionnalité permettant de prendre une capture d'écran de l'interface graphique avec le boutton +
+
+        - On avait pensé à utiliser la méthode ImageIO.write(BufferedImage, "jpg", outputfile) permettant
+        de convertir le BufferedImage en fichier jpg situé à outputfile.
+        Au départ, on a essayé de créer le BufferedImage avec la méthode SwingFXImage.fromFXImage(WritableImage, null)
+        mais cela ne fonctionnait pas.
+
+        - On a donc essaye d'utiliser la fonction Robot.createScreenCapture(Rectangle):BufferedImage,
+        ce rectangle étant la zone à capturer. Cela a fonctionné
+
+        - Pour poursuivre, on a voulu enregistrer plusieurs images, on a d'abord pensé à créer des captures nommées capture1,
+        capture2 ... Cependant, il aurait fallut avoir un fichier contenant le nombre de captures effectuées et l'utilisateur
+        pourrait très bien supprimer des captures, faussant le résultat.
+
+        - On a donc voulu nommer les captures en fonction de leur date de création, cette méthode étant plus simple et efficace,
+        et l'utilisateur obtient aussi la date à laquelle il a fait la capture.
+
+Amaury :
+
+
+
+Benjamin :
+
+Solène :
