@@ -21,40 +21,45 @@ public class Fleche extends Pane {
     public Fleche(Classe f, Classe p){
         this.fils = f;
         this.parent = p;
+
+        int a=0;
+        while(a<this.fils.getAttributs().size() && !this.isAttribut){
+            if(this.fils.getAttributs().get(a).endsWith(this.fils.getNomClasse())){
+                this.isAttribut=true;
+            } else {
+                a++;
+            }
+        }
+        this.isParent = false;
+        // s'il s'agit d'une flèche reliant deux classes par héritage
+        if(this.fils.getParents().getNomClasse().equals(this.parent.getNomClasse())){
+            this.isParent = true;
+        }
+
+        int i = 0;
+        // s'il s'agit d'une flèche reliant une classe à son interface
+        while(i<this.fils.getInterfaces().size() && !this.isInterface){
+            if(this.fils.getInterfaces().get(i).getNomClasse().equals(this.parent.getNomClasse())){
+                this.isInterface = true;
+            } else {
+                i++;
+            }
+        }
     }
 
-<<<<<<< HEAD
     /**
      * Méthode statique permettant de créer une flèche entre deux classes
      * @param f classe fils
      * @param p classe parent
      * @return
      */
-    public static Fleche creerFleche(Classe f, Classe p){
-        Fleche f1 = null;
-        f1.fils = f;
-        f1.parent = p;
-
-        int a=0;
-        // s'il s'agit d'une flèche reliant deux classes par association
-        while(a<f1.fils.getAttributs().size() && !f1.isAttribut){
-            if(f1.fils.getAttributs().get(a).endsWith(f1.parent.getNomClasse())){
-=======
     public static Fleche creerFleche(ClasseApparence f, ClasseApparence p){
         Classe fclasse = Classe.creerClasse(f.getClassic().getNomPackage()+"."+f.getClassic().getNomClasse());
         Classe pclasse = Classe.creerClasse(p.getClassic().getNomPackage()+"."+p.getClassic().getNomClasse());
         Fleche f1 = new Fleche(fclasse,pclasse);
-        int a=0;
-        while(a<fclasse.getAttributs().size() && !f1.isAttribut){
-            if(f1.fils.getAttributs().get(a).endsWith(fclasse.getNomClasse())){
->>>>>>> bb553757874057fe9afd313f0de28cd4f72c5077
-                f1.isAttribut=true;
-            } else {
-                a++;
-            }
-        }
 
-        if(f1.isAttribut){
+
+        if(f1.isAttribut && (f1.isParent || f1.isInterface)){
             double cax = f.getLayoutX()+f.getTailleX()/2;
             double cay = f.getLayoutY()+f.getTailleY()/2;
             double capx = p.getLayoutX()+p.getTailleX()/2;
@@ -63,27 +68,17 @@ public class Fleche extends Pane {
             f1.getChildren().add(line2);
         }
 
-        f1.isParent = false;
-        // s'il s'agit d'une flèche reliant deux classes par héritage
-        if(f1.fils.getParents().getNomClasse().equals(f1.parent.getNomClasse())){
-            f1.isParent = true;
-        }
-
-        int i = 0;
-        // s'il s'agit d'une flèche reliant une classe à son interface
-        while(i<f1.fils.getInterfaces().size() && !f1.isInterface){
-            if(f1.fils.getInterfaces().get(i).getNomClasse().equals(f1.parent.getNomClasse())){
-                f1.isInterface = true;
-            } else {
-                i++;
-            }
-        }
-
         double cax = f.getLayoutX()+f.getTailleX()/2;
         double cay = f.getLayoutY()+f.getTailleY()/2;
         double capx = p.getLayoutX()+p.getTailleX()/2;
         double capy = p.getLayoutY()+p.getTailleY()/2;
         Line line = new Line(cax, cay, capx, capy);
+
+        if(f1.isInterface){
+            line.setStrokeDashOffset(5);
+            line.getStrokeDashArray().setAll(5.0, 5.0);
+        }
+
         f1.getChildren().add(line);
 
         return f1;

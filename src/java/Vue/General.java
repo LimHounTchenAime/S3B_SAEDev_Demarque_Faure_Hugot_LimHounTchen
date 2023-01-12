@@ -84,9 +84,8 @@ public class General extends Pane {
                 }
 
                 ClasseApparence classeApparenceParent = null;
-                Line line = null;
                 int a = 0;
-                while (line == null && a < this.contenu.size()) {
+                while (classeApparenceParent == null && a < this.contenu.size()) {
                     classeApparenceParent = this.contenu.get(a);
                     if (classeApparenceParent.getClassic().getNomClasse().equals(concrete.getParents().getNomClasse())) {
                         Fleche flecheParent = Fleche.creerFleche(apparence, classeApparenceParent);
@@ -98,26 +97,13 @@ public class General extends Pane {
                     }
                 }
 
-//            if(classeApparenceParent!=null){
-//                double cax = apparence.getLayoutX()+apparence.getTailleX()/2;
-//                double cay = apparence.getLayoutY()+apparence.getTailleY()/2;
-//                double capx = classeApparenceParent.getLayoutX()+(classeApparenceParent.getTailleX()/2);
-//                double capy = classeApparenceParent.getLayoutY()+(classeApparenceParent.getTailleY()/2);
-//                Line line = new Line(cax, cay, capx, capy);
-//                Line line = new Line(50,50,100,50);
-//                Polygon triangle = new Polygon(40,40 ,45,55, 55,45);
-//                triangle.setStroke(Color.BLACK);
-//                triangle.setFill(Color.WHITE);
-//                flecheParent.getChildren().addAll(line);
-
-
-//                this.getChildren().add(line);
-//            }
 
                 this.getChildren().addAll(apparence);
                 this.contenu.add(apparence);
                 this.present.add(n);
             }
+        } else {
+            Classe fils = null;
         }
     }
     public void activerMenu(int num,boolean status){
@@ -142,7 +128,6 @@ public class General extends Pane {
         if(!this.contenu.isEmpty() && !this.contenuFleche.isEmpty()){
             Fleche f = null;
             int a = 0;
-            System.out.println("oui");
             while(a<this.contenuFleche.size() && f == null){
                 if(this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom)){
                     f = this.contenuFleche.get(a);
@@ -151,36 +136,35 @@ public class General extends Pane {
                 }
             }
 
-            System.out.println("oui");
-            ClasseApparence cf = null;
-            ClasseApparence cp = null;
+            if(f!=null){
+                ClasseApparence cf = null;
+                ClasseApparence cp = null;
 
-            int b = 0;
+                int b = 0;
 
-            while(b<this.contenu.size() && cf == null){
-                String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
-                if(nomCaf.equals(f.getClasseFils().getNomClasse())){
-                    cf = this.contenu.get(b);
-                } else {
-                    b++;
+                while(b<this.contenu.size() && cf == null){
+                    String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
+                    if(nomCaf.equals(f.getClasseFils().getNomClasse())){
+                        cf = this.contenu.get(b);
+                    } else {
+                        b++;
+                    }
                 }
+
+                int i = 0;
+                while(i<this.contenu.size() && cp == null){
+                    String nomCap=this.contenu.get(i).getClassic().getNomClasse();
+                    if(nomCap.equals(f.getClasseParent().getNomClasse())){
+                        cp = this.contenu.get(i);
+                    } else {
+                        i++;
+                    }
+                }
+
+                f.calculerPosition(cf,cp);
+                this.contenuFleche.set(a,f);
             }
 
-            System.out.println("oui");
-            int i = 0;
-            while(i<this.contenu.size() && cp == null){
-                String nomCap=this.contenu.get(i).getClassic().getNomClasse();
-                if(nomCap.equals(f.getClasseParent().getNomClasse())){
-                    cp = this.contenu.get(i);
-                } else {
-                    i++;
-                }
-            }
-
-            System.out.println("oui");
-            f.calculerPosition(cf,cp);
-            System.out.println("oui");
-            this.contenuFleche.set(a,f);
         }
 
     }

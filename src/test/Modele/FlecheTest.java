@@ -16,8 +16,8 @@ class FlecheTest {
         Classe c2 = Classe.creerClasse("ClasseTest.Animal");
         Classe c3 = Classe.creerClasse("ClasseTest.Aquatique");
 
-        Fleche f1 = Fleche.creerFleche(c1,c2);
-        Fleche f2 = Fleche.creerFleche(c1,c3);
+        Fleche f1 = new Fleche(c1,c2);
+        Fleche f2 = new Fleche(c1,c3);
 
         System.out.println(f1+""+f2);
 
