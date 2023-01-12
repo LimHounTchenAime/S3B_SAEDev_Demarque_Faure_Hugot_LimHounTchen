@@ -66,10 +66,12 @@ public class Fleche extends Pane {
     }
 
     public void calculerPosition(ClasseApparence caf, ClasseApparence cap){
-        double cax = caf.getLayoutX()+caf.getTailleX()/2;
-        double cay = caf.getLayoutY()+caf.getTailleY()/2;
-        double capx = cap.getLayoutX()+cap.getTailleX()/2;
-        double capy = cap.getLayoutY()+cap.getTailleY()/2;
+        this.caf = caf;
+        this.cap = cap;
+        double cax = this.caf.getLayoutX()+caf.getTailleX()/2;
+        double cay = this.caf.getLayoutY()+caf.getTailleY()/2;
+        double capx = this.cap.getLayoutX()+cap.getTailleX()/2;
+        double capy = this.cap.getLayoutY()+cap.getTailleY()/2;
         this.getChildren().set(0, new Line(cax,cay,capx,capy));
     }
 
@@ -99,5 +101,8 @@ public class Fleche extends Pane {
     public Boolean getIsAttribut(){return isAttribut;}
     public Boolean getIsInterface(){return isInterface;}
     public Boolean getIsParent(){return isParent;}
+
+    public Classe getClasseParent(){return this.parent;}
+    public Classe getClasseFils(){return this.fils;}
 
 }

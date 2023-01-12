@@ -91,6 +91,49 @@ public class General extends Pane {
     }
 
     public void Updatedepot(String nom){
+        if(!this.contenu.isEmpty() && !this.contenuFleche.isEmpty()){
+            Fleche f = null;
+            int a = 0;
+            System.out.println("oui");
+            while(a<this.contenuFleche.size() && f == null){
+                if(this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom)){
+                    f = this.contenuFleche.get(a);
+                } else {
+                    a++;
+                }
+            }
+
+            System.out.println("oui");
+            ClasseApparence cf = null;
+            ClasseApparence cp = null;
+
+            int b = 0;
+
+            while(b<this.contenu.size() && cf == null){
+                String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
+                if(nomCaf.equals(f.getClasseFils().getNomClasse())){
+                    cf = this.contenu.get(b);
+                } else {
+                    b++;
+                }
+            }
+
+            System.out.println("oui");
+            int i = 0;
+            while(i<this.contenu.size() && cp == null){
+                String nomCap=this.contenu.get(i).getClassic().getNomClasse();
+                if(nomCap.equals(f.getClasseParent().getNomClasse())){
+                    cp = this.contenu.get(i);
+                } else {
+                    i++;
+                }
+            }
+
+            System.out.println("oui");
+            f.calculerPosition(cf,cp);
+            System.out.println("oui");
+            this.contenuFleche.set(a,f);
+        }
 
     }
 }
