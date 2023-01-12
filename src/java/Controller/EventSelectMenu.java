@@ -8,6 +8,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Classe Controller permettant de gérer la séléction des choix d'un menu lors d'un clic de souris
+ */
+
 public class EventSelectMenu implements EventHandler<MouseEvent> {
 
     StackPane presence;
@@ -23,7 +27,9 @@ public class EventSelectMenu implements EventHandler<MouseEvent> {
 
     public void handle(MouseEvent mouseEvent) {
         String bouton=mouseEvent.getButton().toString();
+        // si un choix du menu est séléctionné (un clic gauche est réalisé sur le bouton correspondant
         if(bouton.equals("PRIMARY")) {
+            // selon le nom du bouton, soit le choix séléctionné, une action du menu correspondante est réalisée
             switch(this.nom){
                 case "Package":
                     this.mcd.activate(0);

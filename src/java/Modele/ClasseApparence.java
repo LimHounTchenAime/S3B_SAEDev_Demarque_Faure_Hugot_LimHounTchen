@@ -45,6 +45,7 @@ public class ClasseApparence extends StackPane {
         longueur = this.classic.getNomClasse().length() + 1;
         int test;
         int savestat;
+        // La taille est adaptée selon que la classe ait un type spécifié ou non
         if (this.classic.getTypeClasse() != null) {
             test = this.classic.getTypeClasse().length() + 11;
         } else {
@@ -58,12 +59,14 @@ public class ClasseApparence extends StackPane {
             longueur = test2;
         }
         savestat = hauteur;
+        // s'il n'y a pas d'attributs à gérer
         if (this.classic.getAttributs().size() == 0) {
             hauteur += 1;
         }
         for (int i = 0; i < this.classic.getAttributs().size(); i++) {
             if (longueur < this.classic.getAttributs().get(i).length() + 1) {
                 switch (this.classic.getAttributs().get(i).split(" ")[0]) {
+                    // si les attributs de la classe sont publiques
                     case "public":
                     default:
                         if (this.pub) {
@@ -76,6 +79,7 @@ public class ClasseApparence extends StackPane {
                             }
                         }
                         break;
+                    // si il sont protégés
                     case "protected":
                         if (this.prot) {
                             if (this.classic.getAttributs().get(i).split(" ")[1].equals("static")) {
@@ -87,6 +91,7 @@ public class ClasseApparence extends StackPane {
                             }
                         }
                         break;
+                    // si ils sont privés
                     case "private":
                         if (this.priv) {
                             if (this.classic.getAttributs().get(i).split(" ")[1].equals("static")) {
@@ -102,6 +107,7 @@ public class ClasseApparence extends StackPane {
             }
             switch (this.classic.getAttributs().get(i).split(" ")[0]) {
                 default:
+                // si les attributs sont publiques
                 case "public":
                     if (this.pub) {
                         if (this.classic.getAttributs().get(i).split(" ")[1].equals("static")) {
@@ -113,6 +119,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // s'ils sont protégés
                 case "protected":
                     if (this.prot) {
                         if (this.classic.getAttributs().get(i).split(" ")[1].equals("static")) {
@@ -124,6 +131,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // s'ils sont privés
                 case "private":
                     if (this.priv) {
                         if (this.classic.getAttributs().get(i).split(" ")[1].equals("static")) {
@@ -142,13 +150,17 @@ public class ClasseApparence extends StackPane {
         }
         savestat = hauteur;
         System.out.println("hauteur attribut : " + hauteur);
+
+        // s'il n'y a pas de constructeur à gérer
         if (this.classic.getConstructeurs().size() == 0) {
             hauteur += 1;
         }
+        // sinon
         for (int i = 0; i < this.classic.getConstructeurs().size(); i++) {
             if (longueur < this.classic.getConstructeurs().get(i).length() + 1) {
                 switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
                     default:
+                    // si les constructeurs sont publiques
                     case "public":
                         if (this.pub) {
                             if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -160,6 +172,7 @@ public class ClasseApparence extends StackPane {
                             }
                         }
                         break;
+                    // s'ils sont protégés
                     case "protected":
                         if (this.prot) {
                             if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -171,6 +184,7 @@ public class ClasseApparence extends StackPane {
                             }
                         }
                         break;
+                    // s'ils sont privés
                     case "private":
                         if (this.priv) {
                             if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -186,6 +200,7 @@ public class ClasseApparence extends StackPane {
             }
             switch (this.classic.getConstructeurs().get(i).split(" ")[0]) {
                 default:
+                // s'ils sont publiques
                 case "public":
                     if (this.pub) {
                         if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -197,6 +212,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // s'ils sont protégés
                 case "protected":
                     if (this.prot) {
                         if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -208,6 +224,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // s'ils sont privés
                 case "private":
                     if (this.priv) {
                         if (this.classic.getConstructeurs().get(i).split(" ")[1].equals("static")) {
@@ -226,13 +243,16 @@ public class ClasseApparence extends StackPane {
         }
         savestat = hauteur;
         System.out.println("hauteur constructeur : " + hauteur);
+        // s'il n'y a pas de méthodes à gérer
         if (this.classic.getMethodes().size() == 0) {
             hauteur += 1;
         }
+        // sinon
         for (int i = 0; i < this.classic.getMethodes().size(); i++) {
             if (longueur < this.classic.getMethodes().get(i).length() + 1) {
                 switch (this.classic.getMethodes().get(i).split(" ")[0]) {
                     default:
+                    // si les méthodes sont publiques
                     case "public":
                         if (this.pub) {
                             if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {
@@ -244,11 +264,13 @@ public class ClasseApparence extends StackPane {
                             }
                         }
                         break;
+                    // si elles sont protégées
                     case "protected":
                         if (this.prot) {
                             longueur = this.classic.getMethodes().get(i).length();
                         }
                         break;
+                    // si elles sont privées
                     case "private":
                         if (this.priv) {
                             longueur = this.classic.getMethodes().get(i).length();
@@ -258,6 +280,7 @@ public class ClasseApparence extends StackPane {
             }
             switch (this.classic.getMethodes().get(i).split(" ")[0]) {
                 default:
+                // si elles sont publiques
                 case "public":
                     if (this.pub) {
                         if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {
@@ -269,6 +292,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // si elles sont protégées
                 case "protected":
                     if (this.prot) {
                         if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {
@@ -280,6 +304,7 @@ public class ClasseApparence extends StackPane {
                         }
                     }
                     break;
+                // si elles sont privées
                 case "private":
                     if (this.priv) {
                         if (this.classic.getMethodes().get(i).split(" ")[1].equals("static")) {

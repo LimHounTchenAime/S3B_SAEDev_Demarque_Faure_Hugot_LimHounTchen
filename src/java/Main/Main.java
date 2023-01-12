@@ -15,6 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Classe à éxécuter afin de lancer l'application et ainsi pouvoir afficher les diagrammes de classe
+ */
+
 public class Main extends Application {
 
     private General general;

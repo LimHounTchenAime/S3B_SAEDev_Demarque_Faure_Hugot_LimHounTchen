@@ -12,6 +12,11 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
+/**
+ * Classe générant un menu avec différentes options qui apparaissent après un clic droit dans l'interface
+ * graphique de l'application
+ */
+
 public class MenuClickDroit extends VBox {
 
     String[] liste={"Package","Private","Protected","Public","Static","All","None"};
@@ -45,6 +50,10 @@ public class MenuClickDroit extends VBox {
         this.setVisible(b);
     }
 
+    /**
+     * Méthode permettant d'activer l'action correspondant au choix parmi les différentes possibilitées du menu
+     * @param choix numéro du choix correspondant au menu (dans l'ordre)
+     */
     public void activate(int choix){
         this.gen.activerMenu(choix,this.packet.get(choix).isSelected());
         if(choix==6){

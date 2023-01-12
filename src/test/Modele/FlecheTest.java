@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FlecheTest {
 
+    /**
+     * Test vérifiant l'affichage des flèches dans un terminal avec la méthode toString()
+     * @throws Exception
+     */
     @Test
     public void testFlecheToString() throws Exception {
         Classe c1 = Classe.creerClasse("ClasseTest.Poisson");
