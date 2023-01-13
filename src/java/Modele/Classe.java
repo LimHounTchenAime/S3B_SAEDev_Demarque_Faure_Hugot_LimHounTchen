@@ -67,7 +67,11 @@ public class Classe {
     }
 
     public Classe getParents() {
-        return this.parents;
+        if(this.parents==null){
+            return this;
+        }else{
+            return this.parents;
+        }
     }
 
     public String getFileName() { return this.fileName; }
