@@ -85,12 +85,6 @@ public class General extends Pane {
                         a++;
                     }
                 }
-
-
-
-                this.getChildren().addAll(apparence);
-                this.contenu.add(apparence);
-                this.present.add(n);
             } else {
                 System.out.println("UWU");
                 ClasseApparence fils = null;
@@ -107,6 +101,9 @@ public class General extends Pane {
                     x++;
                 }
             }
+            this.getChildren().addAll(apparence);
+            this.contenu.add(apparence);
+            this.present.add(n);
         }
     }
     public void activerMenu(int num,boolean status){
