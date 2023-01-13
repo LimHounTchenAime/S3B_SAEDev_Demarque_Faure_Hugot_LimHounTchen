@@ -68,10 +68,8 @@ public class General extends Pane {
 //                    this.getChildren().add(line);
 //                } else { a++; }
 //            }
-            System.out.println(concrete.getParents().getNomClasse());
             if (!concrete.getParents().getNomClasse().equals("Object")) {
                 Classe parent = Classe.creerClasse(concrete.getParents().getNomPackage() + "." + concrete.getParents().getNomClasse());
-
                 ClasseApparence classeApparenceParent = null;
                 int a = 0;
                 while (classeApparenceParent == null && a < this.contenu.size()) {
@@ -81,12 +79,17 @@ public class General extends Pane {
                         this.getChildren().add(flecheParent);
                         flecheParent.toBack();
                         this.contenuFleche.add(flecheParent);
-                    } else {
+                    } else if(classeApparenceParent.getClassic().getParents().getNomClasse().equals(concrete.getNomClasse())){
+                        Fleche flecheParent = Fleche.creerFleche(classeApparenceParent, apparence);
+                        this.getChildren().add(flecheParent);
+                        flecheParent.toBack();
+                        this.contenuFleche.add(flecheParent);
+                    }else{
+                        classeApparenceParent =null;
                         a++;
                     }
                 }
             } else {
-                System.out.println("UWU");
                 ClasseApparence fils = null;
                 Fleche f = null;
                 int x = 0;
@@ -128,43 +131,42 @@ public class General extends Pane {
         if(!this.contenu.isEmpty() && !this.contenuFleche.isEmpty()){
             Fleche f = null;
             int a = 0;
-            while(a<this.contenuFleche.size() && f == null){
+            while(a<this.contenuFleche.size()){
                 if((this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom))||(this.contenuFleche.get(a).getClasseFils().getNomClasse().equals(nom))){
                     f = this.contenuFleche.get(a);
+                    if(f!=null){
+                        ClasseApparence cf = null;
+                        ClasseApparence cp = null;
+
+                        int b = 0;
+
+                        while(b<this.contenu.size() && cf == null){
+                            String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
+                            if(nomCaf.equals(f.getClasseFils().getNomClasse())){
+                                cf = this.contenu.get(b);
+                            } else {
+                                b++;
+                            }
+                        }
+
+                        int i = 0;
+                        while(i<this.contenu.size() && cp == null){
+                            String nomCap=this.contenu.get(i).getClassic().getNomClasse();
+                            if(nomCap.equals(f.getClasseParent().getNomClasse())){
+                                cp = this.contenu.get(i);
+                            } else {
+                                i++;
+                            }
+                        }
+
+                        f.calculerPosition(cf,cp);
+                        this.contenuFleche.set(a,f);
+                        a++;
+                    }
                 } else {
                     a++;
                 }
             }
-
-            if(f!=null){
-                ClasseApparence cf = null;
-                ClasseApparence cp = null;
-
-                int b = 0;
-
-                while(b<this.contenu.size() && cf == null){
-                    String nomCaf=this.contenu.get(b).getClassic().getNomClasse();
-                    if(nomCaf.equals(f.getClasseFils().getNomClasse())){
-                        cf = this.contenu.get(b);
-                    } else {
-                        b++;
-                    }
-                }
-
-                int i = 0;
-                while(i<this.contenu.size() && cp == null){
-                    String nomCap=this.contenu.get(i).getClassic().getNomClasse();
-                    if(nomCap.equals(f.getClasseParent().getNomClasse())){
-                        cp = this.contenu.get(i);
-                    } else {
-                        i++;
-                    }
-                }
-
-                f.calculerPosition(cf,cp);
-                this.contenuFleche.set(a,f);
-            }
-
         }
 
     }
