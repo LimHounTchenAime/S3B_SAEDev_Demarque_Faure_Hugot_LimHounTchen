@@ -129,7 +129,7 @@ public class General extends Pane {
             Fleche f = null;
             int a = 0;
             while(a<this.contenuFleche.size() && f == null){
-                if(this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom)){
+                if((this.contenuFleche.get(a).getClasseParent().getNomClasse().equals(nom))||(this.contenuFleche.get(a).getClasseFils().getNomClasse().equals(nom))){
                     f = this.contenuFleche.get(a);
                 } else {
                     a++;
