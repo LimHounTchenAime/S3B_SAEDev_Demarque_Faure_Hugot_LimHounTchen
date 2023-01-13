@@ -17,9 +17,12 @@ Aimé :
         et l'utilisateur obtient aussi la date à laquelle il a fait la capture.
 
 Amaury :
-
+    - Fonctionnalité permettant d'afficher les fleches dans l'interface graphique
+        - Les fleches utilisent la position du centre de la classe (boite où l'on peut voir les classes et leurs informations)
+        pour ensuite relier les deux points par une ligne
 
 
 Benjamin :
+    - Fonctionnalité permettant de tout cacher et de tout afficher via le menu click droit
 
 Solène :
